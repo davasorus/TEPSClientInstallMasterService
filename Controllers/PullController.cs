@@ -1,0 +1,150 @@
+﻿using System;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using System.Web.Http;
+using TEPSClientInstallService_Master.Classes;
+
+namespace TEPSClientInstallService_Master.Controllers
+{
+    public class PullController : ApiController
+    {
+        private loggingClass loggingClass = new loggingClass();
+        private sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
+
+        private static HttpClient httpClient = new HttpClient();
+
+        //not implemented in agent yet
+        public async Task<IHttpActionResult> GetHealthCheck(int id)
+        {
+            string json = "";
+
+            try
+            {
+                string[] exec = { id.ToString() };
+
+                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+                if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+                {
+                    httpClient.DefaultRequestHeaders.Accept.Add(new
+                      MediaTypeWithQualityHeaderValue("application/json"));
+                }
+
+                var sqlID = sqlServerInteraction.returnClientName("GetClientByID", exec);
+
+                var URI = $"http://{sqlID}:8080/Software//GetHealthCheck";
+
+                loggingClass.logEntryWriter($"forwarding message to {sqlID}", "info");
+                loggingClass.logEntryWriter($"message forwarded {URI}", "info");
+
+                HttpResponseMessage response = await httpClient.GetAsync(URI);
+
+                json = await response.Content.ReadAsStringAsync();
+
+                loggingClass.logEntryWriter($"response received {json}", "info");
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
+                json = ex.Message;
+            }
+
+            return Json(json);
+        }
+
+        //not implemented in agent yet
+        public async Task<IHttpActionResult> GetPresentFiles(int id)
+        {
+            string json = "";
+
+            try
+            {
+                string[] exec = { id.ToString() };
+
+                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+                if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+                {
+                    httpClient.DefaultRequestHeaders.Accept.Add(new
+                      MediaTypeWithQualityHeaderValue("application/json"));
+                }
+
+                var sqlID = sqlServerInteraction.returnClientName("GetClientByID", exec);
+
+                var URI = $"http://{sqlID}:8080/Software//GetPresentFiles";
+
+                loggingClass.logEntryWriter($"forwarding message to {sqlID}", "info");
+                loggingClass.logEntryWriter($"message forwarded {URI}", "info");
+
+                HttpResponseMessage response = await httpClient.GetAsync(URI);
+
+                json = await response.Content.ReadAsStringAsync();
+
+                loggingClass.logEntryWriter($"response received {json}", "info");
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
+                json = ex.Message;
+            }
+
+            return Json(json);
+        }
+
+        public async Task<IHttpActionResult> GetInstalledSoftware(int id)
+        {
+            string json = "";
+
+            try
+            {
+                string[] exec = { id.ToString() };
+
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
+                var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+                if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+                {
+                    httpClient.DefaultRequestHeaders.Accept.Add(new
+                      MediaTypeWithQualityHeaderValue("application/json"));
+                }
+
+                var sqlID = sqlServerInteraction.returnClientName("GetClientByID", exec);
+
+                var URI = $"http://{sqlID}:8080/Software//GetInstalledSoftware";
+
+                loggingClass.logEntryWriter($"forwarding message to {sqlID}", "info");
+                loggingClass.logEntryWriter($"message forwarded {URI}", "info");
+
+                HttpResponseMessage response = await httpClient.GetAsync(URI);
+
+                json = await response.Content.ReadAsStringAsync();
+
+                loggingClass.logEntryWriter($"response received {json}", "info");
+            }
+            catch (TaskCanceledException ex)
+            {
+                if (ex.CancellationToken.IsCancellationRequested)
+                {
+                    loggingClass.logEntryWriter($"cancellation was requested?", "debug");
+                    loggingClass.logEntryWriter(ex.ToString(), "debug");
+
+                    json = ex.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
+                json = ex.Message;
+            }
+
+            return Json(json);
+        }
+    }
+}

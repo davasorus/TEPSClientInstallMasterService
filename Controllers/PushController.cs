@@ -14,12 +14,11 @@ namespace TEPSClientInstallService_Master.Controllers
         private loggingClass loggingClass = new loggingClass();
         private sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
 
-        private static HttpClient httpClient = new HttpClient();
-
         //not implemented in agent yet
         public async Task<IHttpActionResult> Post(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -66,6 +65,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallSQLCE35(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -110,6 +110,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallGIS(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -154,6 +155,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallUpdater(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -198,6 +200,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallScenePD(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -242,6 +245,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallSQLCE40(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -286,6 +290,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallSQLCLR(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -334,6 +339,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallDotNet(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -378,6 +384,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallSQLCE35(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -422,6 +429,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallGIS(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -466,6 +474,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallDBProviders(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -510,6 +519,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallUpdater(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -554,6 +564,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallScenePD(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -598,6 +609,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallSQLCE40(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -642,6 +654,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallVS2010(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -686,6 +699,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallSQLCLR2008(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -730,6 +744,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallSQLCLR2012(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -778,6 +793,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallMSP(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -822,6 +838,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallCAD(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -866,6 +883,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallMobile(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -910,6 +928,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallObserver(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -958,6 +977,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallMSP(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -1002,6 +1022,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallCAD(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -1050,6 +1071,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostLawMobile(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -1094,6 +1116,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostFireMobile(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -1138,6 +1161,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostMobileMerge(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -1186,6 +1210,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallBlockPreReq(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -1230,6 +1255,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallBlockPreReq(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -1274,6 +1300,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUninstallBlockClient(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -1318,6 +1345,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostInstallBlockClient(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
@@ -1362,6 +1390,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> PostUpdaterConfigBlockMobile(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {

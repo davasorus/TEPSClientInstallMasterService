@@ -17,7 +17,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
         private static HttpClient httpClient = new HttpClient();
 
-        //not implemented in agent yet
+        //not implemented yet
         public async Task<IHttpActionResult> Post(int id)
         {
             string json = "";

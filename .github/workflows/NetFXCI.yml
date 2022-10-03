@@ -31,9 +31,9 @@ jobs:
         
         # restore the .sln of your project
       - name: restore NuGet packages
-        run: nuget restore 'TEPSClientInstallMasterService.exe'
+        run: nuget restore 'TEPSClientInstallService-Master.sln'
         
         # build the .sln of your project
       - name: Build Application
-        run: msbuild 'TEPSClientInstallMasterService.exe'
+        run: msbuild 'TEPSClientInstallService-Master.sln'
         

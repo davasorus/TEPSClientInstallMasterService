@@ -159,7 +159,7 @@ namespace TEPSClientInstallService_Master.Controllers
             {
                 string[] exec = { id.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1043,7 +1043,7 @@ namespace TEPSClientInstallService_Master.Controllers
             return Json(json);
         }
 
-        #endregion
+        #endregion client redirect install
 
         #region client redirect mobile config
 
@@ -1179,7 +1179,7 @@ namespace TEPSClientInstallService_Master.Controllers
             return Json(json);
         }
 
-        #endregion
+        #endregion client redirect mobile config
 
         #region block testing
 

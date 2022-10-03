@@ -85,6 +85,7 @@
     <Compile Include="Classes\installerClass.cs" />
     <Compile Include="Classes\loggingClass.cs" />
     <Compile Include="Classes\sqlServerInteraction.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PullController.cs" />
     <Compile Include="Controllers\PushController.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -129,9 +130,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="G5L9qP30_400x400.ico" />
     <EmbeddedResource Include="Resources\Scripts\CreateSPGetTop50Error.sql">

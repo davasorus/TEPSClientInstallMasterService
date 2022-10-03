@@ -1191,7 +1191,7 @@ namespace TEPSClientInstallService_Master.Controllers
             {
                 string[] exec = { id.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1235,7 +1235,7 @@ namespace TEPSClientInstallService_Master.Controllers
             {
                 string[] exec = { id.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1279,7 +1279,7 @@ namespace TEPSClientInstallService_Master.Controllers
             {
                 string[] exec = { id.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1323,7 +1323,7 @@ namespace TEPSClientInstallService_Master.Controllers
             {
                 string[] exec = { id.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1367,7 +1367,7 @@ namespace TEPSClientInstallService_Master.Controllers
             {
                 string[] exec = { id.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))

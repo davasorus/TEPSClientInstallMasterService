@@ -20,7 +20,7 @@ jobs:
         pr_template: ""   # Path to pull request template, requires pr_title to be set, excludes pr_body
         pr_reviewer: "davasorus"                         # Comma-separated list (no spaces)
         pr_assignee: "davasorus"                         # Comma-separated list (no spaces)
-        pr_label: "automatic,automerge"                               # Comma-separated list (no spaces)
+        pr_label: "automatic"                               # Comma-separated list (no spaces)
         pr_milestone: ""                       # Milestone name
         pr_draft: false                                    # Creates pull request as draft
         pr_allow_empty: false                              # Creates pull request even if there are no changes

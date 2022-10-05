@@ -13,11 +13,10 @@ namespace TEPSClientInstallService_Master.Controllers
         private loggingClass loggingClass = new loggingClass();
         private sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
 
-        private static HttpClient httpClient = new HttpClient();
-
         //not implemented in agent yet
         public async Task<IHttpActionResult> GetHealthCheck(int id)
         {
+            HttpClient httpClient = new HttpClient();
             string json = "";
 
             try
@@ -59,6 +58,7 @@ namespace TEPSClientInstallService_Master.Controllers
         //not implemented in agent yet
         public async Task<IHttpActionResult> GetPresentFiles(int id)
         {
+            HttpClient httpClient = new HttpClient();
             string json = "";
 
             try
@@ -99,6 +99,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
         public async Task<IHttpActionResult> GetInstalledSoftware(int id)
         {
+            HttpClient httpClient = new HttpClient();
             string json = "";
 
             try

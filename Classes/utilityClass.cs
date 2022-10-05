@@ -20,13 +20,13 @@ namespace TEPSClientInstallService_Master.Classes
                 }
                 if (item.responseCode.Equals("200 OK"))
                 {
-                    if (item.message.Contains("Installed"))
+                    if (item.message.Contains("- Uninstalled"))
                     {
-                        await loggingClass.submitSQLInstallLog(clientname, EnrolledInstanceType, item.message);
+                        await loggingClass.submitSQLUninstallInstallLog(clientname, EnrolledInstanceType, item.message);
                     }
                     else
                     {
-                        await loggingClass.submitSQLUninstallInstallLog(clientname, EnrolledInstanceType, item.message);
+                        await loggingClass.submitSQLInstallLog(clientname, EnrolledInstanceType, item.message);
                     }
                 }
             }

@@ -2,7 +2,6 @@
 using NLog.Config;
 using NLog.Targets;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace TEPSClientInstallService_Master.Classes
@@ -27,7 +26,6 @@ namespace TEPSClientInstallService_Master.Classes
             {
                 await submitSQLError(logMessage);
             }
-            
         }
 
         public async Task submitSQLError(string logMessage)
@@ -37,9 +35,9 @@ namespace TEPSClientInstallService_Master.Classes
             sqlServerInteraction.executeNonReturningStoredProcedure("InsertErrorLog", executionText);
         }
 
-        public async Task submitSQLInstallLog(string clientname,int EnrolledInstanceType,string logMessage)
+        public async Task submitSQLInstallLog(string clientname, int EnrolledInstanceType, string logMessage)
         {
-            string[] executionText = {clientname,EnrolledInstanceType.ToString(), logMessage };
+            string[] executionText = { clientname, EnrolledInstanceType.ToString(), logMessage };
 
             sqlServerInteraction.executeNonReturningStoredProcedure("InsertInstallHistory", executionText);
         }

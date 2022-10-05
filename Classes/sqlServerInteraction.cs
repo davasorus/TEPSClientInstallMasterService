@@ -65,23 +65,24 @@ namespace TEPSClientInstallService_Master.Classes
                 {
                     case "InsertInstallHistory":
                         prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
-                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
                         prm.Add(new SqlParameter("@Action", SqlDbType.NVarChar) { Value = executionText[2] });
                         break;
 
                     case "InsertUninstallHistory":
                         prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
-                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
                         prm.Add(new SqlParameter("@Action", SqlDbType.NVarChar) { Value = executionText[2] });
                         break;
 
                     case "InsertErrorLog":
                         prm.Add(new SqlParameter("@ErrorMessage", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[1] });
                         break;
 
                     case "InsertPreReq":
                         prm.Add(new SqlParameter("@PreReq_Name", SqlDbType.NVarChar) { Value = executionText[0] });
-                        prm.Add(new SqlParameter("@PreReq_Path", SqlDbType.Bit) { Value = executionText[1] });
+                        prm.Add(new SqlParameter("@PreReq_Path", SqlDbType.NVarChar) { Value = executionText[1] });
                         break;
 
                     default:

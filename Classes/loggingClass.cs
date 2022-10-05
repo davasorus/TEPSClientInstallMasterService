@@ -1,6 +1,7 @@
 ﻿using NLog;
 using NLog.Config;
 using NLog.Targets;
+using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -24,13 +25,13 @@ namespace TEPSClientInstallService_Master.Classes
 
             if (level.Equals("error"))
             {
-                await submitSQLError(logMessage);
+                await submitSQLError(logMessage, Environment.MachineName.ToString());
             }
         }
 
-        public async Task submitSQLError(string logMessage)
+        public async Task submitSQLError(string logMessage, string clientName)
         {
-            string[] executionText = { logMessage };
+            string[] executionText = { logMessage, clientName };
 
             sqlServerInteraction.executeNonReturningStoredProcedure("InsertErrorLog", executionText);
         }

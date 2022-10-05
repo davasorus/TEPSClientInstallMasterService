@@ -16,7 +16,7 @@ namespace TEPSClientInstallService_Master.Classes
             {
                 if (item.responseCode.Equals("400 Bad Request"))
                 {
-                    await loggingClass.submitSQLError(item.message);
+                    await loggingClass.submitSQLError(item.message, clientname);
                 }
                 if (item.responseCode.Equals("200 OK"))
                 {

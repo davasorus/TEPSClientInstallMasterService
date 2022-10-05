@@ -1,8 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[InsertInstallHistory]
 	@ClientName nvarchar(MAX),
-	@EnrolledInstanceType bit,
-	@Action nvarchar(max),
-	@DateTime DateTime2
+	@EnrolledInstanceType int,
+	@Action nvarchar(max)
 AS
 	SET NOCOUNT ON;
 	insert into dbo.InstallHistory

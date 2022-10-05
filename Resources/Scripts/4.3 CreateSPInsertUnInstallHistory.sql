@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[InsertUninstallHistory]
 	@ClientName nvarchar(MAX),
-	@EnrolledInstanceType bit,
+	@EnrolledInstanceType int,
 	@Action nvarchar(max)
 AS
 	SET NOCOUNT ON;

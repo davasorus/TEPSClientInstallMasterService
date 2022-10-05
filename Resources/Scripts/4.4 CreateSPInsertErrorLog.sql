@@ -1,8 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[InsertErrorLog]
-	@ErrorMessage nvarchar(MAX)
+	@ErrorMessage nvarchar(MAX),
+	@ClientName nvarchar(MAX)
 
 AS
 	SET NOCOUNT ON;
 	insert into dbo.errorLog
-	(ErrorMessage,ErrorDate_Time)
-	VALUES (@ErrorMessage, GETDATE())
+	(ClientName,ErrorMessage,ErrorDate_Time)
+	VALUES (@ClientName,@ErrorMessage, GETDATE())

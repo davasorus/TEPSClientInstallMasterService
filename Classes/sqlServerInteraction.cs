@@ -28,14 +28,44 @@ namespace TEPSClientInstallService_Master.Classes
                     foreach (DataRow row in clientByIDTable.Rows)
                     {
                         value = row[1].ToString();
+
+                        checkForCatalog("GetInstalledCatalogs", exec);
                     }
                     return value;
                 }
+
+                checkForCatalog("GetInstalledCatalogs", exec);
+
                 return null;
             }
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public bool checkForCatalog(string storedProcedureName, string[] executionText)
+        {
+            string[] exec = { executionText[0] };
+
+            DataTable catalogByIDTable = new DataTable();
+
+            bool value = false;
+
+            try
+            {
+                catalogByIDTable = executeReturningStoredProcedure(storedProcedureName, exec);
+
+                if (catalogByIDTable.Rows.Count > 0)
+                {
+                    return true;
+                }
+                executeNonReturningStoredProcedure("InsertNewCatalog", exec);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 
@@ -63,23 +93,34 @@ namespace TEPSClientInstallService_Master.Classes
                 //switch should be the name in DB for the SP
                 switch (storedProcedureName)
                 {
-                    case "CreateProfile":
-                        prm.Add(new SqlParameter("@name", SqlDbType.NVarChar) { Value = executionText[0] });
-                        prm.Add(new SqlParameter("@SourceLocation", SqlDbType.NVarChar) { Value = executionText[1] });
-                        prm.Add(new SqlParameter("@DestinationLocation", SqlDbType.NVarChar) { Value = executionText[2] });
-                        prm.Add(new SqlParameter("@LastCopyType", SqlDbType.NVarChar) { Value = executionText[3] });
+                    case "InsertInstallHistory":
+                        prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        prm.Add(new SqlParameter("@Action", SqlDbType.NVarChar) { Value = executionText[2] });
                         break;
 
-                    case "UpdateProfile":
-                        prm.Add(new SqlParameter("@name", SqlDbType.NVarChar) { Value = executionText[0] });
-                        prm.Add(new SqlParameter("@SourceLocation", SqlDbType.NVarChar) { Value = executionText[1] });
-                        prm.Add(new SqlParameter("@DestinationLocation", SqlDbType.NVarChar) { Value = executionText[2] });
-                        prm.Add(new SqlParameter("@LastCopyType", SqlDbType.NVarChar) { Value = executionText[3] });
-                        prm.Add(new SqlParameter("@LastCopyDuration", SqlDbType.NVarChar) { Value = executionText[4] });
+                    case "InsertUninstallHistory":
+                        prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        prm.Add(new SqlParameter("@Action", SqlDbType.NVarChar) { Value = executionText[2] });
                         break;
 
-                    case "DeleteProfile":
-                        prm.Add(new SqlParameter("@name", SqlDbType.NVarChar) { Value = executionText[0] });
+                    case "InsertErrorLog":
+                        prm.Add(new SqlParameter("@ErrorMessage", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[1] });
+                        break;
+
+                    case "InsertPreReq":
+                        prm.Add(new SqlParameter("@PreReq_Name", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@PreReq_Path", SqlDbType.NVarChar) { Value = executionText[1] });
+                        break;
+
+                    case "InsertNewCatalog":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        break;
+
+                    case "InsertNewClient":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
                         break;
 
                     default:
@@ -127,7 +168,7 @@ namespace TEPSClientInstallService_Master.Classes
 
                         break;
 
-                    case "GetInstalledCatalog":
+                    case "GetInstalledCatalogs":
                         using (da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(result);
@@ -152,6 +193,16 @@ namespace TEPSClientInstallService_Master.Classes
                             da.Fill(result);
                         }
 
+                        break;
+
+                    case "GetInstalledCatalogByID":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+                        break;
+
+                    default:
                         break;
                 }
 

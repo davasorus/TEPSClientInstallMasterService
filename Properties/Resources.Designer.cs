@@ -72,55 +72,6 @@ namespace TEPSClientInstallService_Master.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE [dbo].[EnrolledInstanceType]
-        ///(
-        ///	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
-        ///    [InstanceType] NCHAR(50) NULL
-        ///)
-        ///.
-        /// </summary>
-        internal static string _2_1_CreateEnrolledInstanceType {
-            get {
-                return ResourceManager.GetString("_2_1_CreateEnrolledInstanceType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE [dbo].[errorLog]
-        ///(
-        ///	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
-        ///    [ErrorMessage] NVARCHAR(MAX) NOT NULL, 
-        ///    [ErrorDate_Time] DATETIME2 NOT NULL DEFAULT (GETDATE())
-        ///)
-        ///.
-        /// </summary>
-        internal static string _2_2_CreateErrorLog {
-            get {
-                return ResourceManager.GetString("_2_2_CreateErrorLog", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE [dbo].[InstalledCatalog]
-        ///(
-        ///	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
-        ///    [Client_ID] INT NOT NULL, 
-        ///    [SQLCompact3532_Installed] BIT NOT NULL DEFAULT 0, 
-        ///    [SQLCompact3564_Installed] BIT NOT NULL DEFAULT 0, 
-        ///    [SQLCompact0464_Installed] BIT NOT NULL DEFAULT 0, 
-        ///    [SQLCLR200832_Installed] BIT NOT NULL DEFAULT 0, 
-        ///    [SQLCLR200864_Installed] BIT NOT NULL DEFAULT 0, 
-        ///    [ScenePD_Installed] BIT NOT NULL DEFAULT 0, 
-        ///    [Updater_Installed] BIT NOT NULL DEFAULT 0, 
-        ///    [GISC [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string _2_3_CreateInstalledCatalog {
-            get {
-                return ResourceManager.GetString("_2_3_CreateInstalledCatalog", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to CREATE TABLE [dbo].[Clients]
         ///(
         ///	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
@@ -143,7 +94,7 @@ namespace TEPSClientInstallService_Master.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to insert INTO TylerClientIMS.dbo.EnrolledInstanceType
-        ///VALUES (&apos;UNINSTALLED&apos;)
+        ///VALUES (&apos;UNKNOWN&apos;)
         ///insert INTO TylerClientIMS.dbo.EnrolledInstanceType
         ///VALUES (&apos;PROD&apos;)
         ///insert INTO TylerClientIMS.dbo.EnrolledInstanceType
@@ -189,25 +140,12 @@ namespace TEPSClientInstallService_Master.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE PROCEDURE [dbo].[GetInstalledCatalog]
-        ///	
-        ///AS
-        ///	begin
-        ///	Select * from dbo.InstalledCatalog
-        ///	end.
-        /// </summary>
-        internal static string CreateSPGetInstalledCatalog {
-            get {
-                return ResourceManager.GetString("CreateSPGetInstalledCatalog", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to CREATE PROCEDURE [dbo].[GetTop50Errors]
         ///	
         ///AS
         ///	begin
         ///	SELECT TOP (50) [Id]
+        ///      ,[ClientName]
         ///      ,[ErrorMessage]
         ///      ,[ErrorDate_Time]
         ///  FROM [TylerClientIMS].[dbo].[errorLog]

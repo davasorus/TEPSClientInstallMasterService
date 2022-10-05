@@ -65,13 +65,13 @@ namespace TEPSClientInstallService_Master.Classes
                 {
                     case "InsertInstallHistory":
                         prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
-                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Bit) { Value = executionText[1] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         prm.Add(new SqlParameter("@Action", SqlDbType.NVarChar) { Value = executionText[2] });
                         break;
 
                     case "InsertUninstallHistory":
                         prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
-                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Bit) { Value = executionText[1] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         prm.Add(new SqlParameter("@Action", SqlDbType.NVarChar) { Value = executionText[2] });
                         break;
 

@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[InstallHistory]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
     [ClientName] NVARCHAR(50) NULL, 
     [EnrolledInstanceType] BIT NULL, 
     [Action] NVARCHAR(MAX) NULL, 

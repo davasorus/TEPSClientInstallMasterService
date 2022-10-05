@@ -30,11 +30,25 @@ namespace TEPSClientInstallService_Master.Classes
             
         }
 
-        private async Task submitSQLError(string logMessage)
+        public async Task submitSQLError(string logMessage)
         {
             string[] executionText = { logMessage };
 
             sqlServerInteraction.executeNonReturningStoredProcedure("InsertErrorLog", executionText);
+        }
+
+        public async Task submitSQLInstallLog(string clientname,int EnrolledInstanceType,string logMessage)
+        {
+            string[] executionText = {clientname,EnrolledInstanceType.ToString(), logMessage };
+
+            sqlServerInteraction.executeNonReturningStoredProcedure("InsertInstallHistory", executionText);
+        }
+
+        public async Task submitSQLUninstallInstallLog(string clientname, int EnrolledInstanceType, string logMessage)
+        {
+            string[] executionText = { clientname, EnrolledInstanceType.ToString(), logMessage };
+
+            sqlServerInteraction.executeNonReturningStoredProcedure("InsertUninstallHistory", executionText);
         }
 
         public void initializeNLogLogger()

@@ -14,8 +14,6 @@ namespace TEPSClientInstallService_Master.Controllers
         private loggingClass loggingClass = new loggingClass();
         private sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
 
-        
-
         //not implemented yet
         public async Task<IHttpActionResult> Post(int id)
         {

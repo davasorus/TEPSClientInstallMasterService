@@ -11,6 +11,8 @@ namespace TEPSClientInstallService_Master.Controllers
 {
     public class PushController : ApiController
     {
+        private utilityClass utilityClass = new utilityClass();
+
         private loggingClass loggingClass = new loggingClass();
         private sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
 
@@ -69,6 +71,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -96,6 +99,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -114,6 +118,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -141,6 +146,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -159,6 +165,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -186,6 +193,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -204,6 +212,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -231,6 +240,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -249,6 +259,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -276,6 +287,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -294,6 +306,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -321,6 +334,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -343,6 +357,8 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
+
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -370,6 +386,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -388,6 +406,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -415,6 +434,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -433,6 +454,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -460,6 +482,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -478,6 +502,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -505,6 +530,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -523,6 +550,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -550,6 +578,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -568,6 +598,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -595,6 +626,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -613,6 +646,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -640,6 +674,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -658,6 +694,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -685,6 +722,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -703,6 +742,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -730,6 +770,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -748,6 +790,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -775,6 +818,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -981,6 +1026,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1008,6 +1054,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -1026,6 +1073,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1053,6 +1101,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -1075,6 +1124,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1102,6 +1152,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -1120,6 +1171,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1147,6 +1199,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -1165,6 +1218,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1192,6 +1246,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -1214,6 +1269,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1241,6 +1297,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -1259,6 +1317,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1286,6 +1345,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -1304,6 +1364,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1331,6 +1392,8 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -1349,6 +1412,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1376,6 +1440,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {
@@ -1394,6 +1459,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
@@ -1421,6 +1487,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 json = await response.Content.ReadAsStringAsync();
 
                 loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
             }
             catch (Exception ex)
             {

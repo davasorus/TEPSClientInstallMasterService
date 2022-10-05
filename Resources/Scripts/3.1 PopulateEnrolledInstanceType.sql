@@ -1,5 +1,5 @@
 insert INTO TylerClientIMS.dbo.EnrolledInstanceType
-VALUES ('UNINSTALLED')
+VALUES ('UNKNOWN')
 insert INTO TylerClientIMS.dbo.EnrolledInstanceType
 VALUES ('PROD')
 insert INTO TylerClientIMS.dbo.EnrolledInstanceType

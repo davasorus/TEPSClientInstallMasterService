@@ -2,6 +2,8 @@
 using NLog.Config;
 using NLog.Targets;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace TEPSClientInstallService_Master.Classes
 {
@@ -9,15 +11,30 @@ namespace TEPSClientInstallService_Master.Classes
     {
         private static Logger _logger;
 
+        private static sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
+
         private static string applicationName = "TEPS Automated Client Install Master Service " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         private readonly string logFileName = $@"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Logging\{applicationName}.json";
 
         //adds log messages to log collection (which is then seen via the internal log viewer view)
-        public void logEntryWriter(string logMessage, string level)
+        public async void logEntryWriter(string logMessage, string level)
         {
             //this.Dispatcher.Invoke(() => logs.Collection.Add(new loggingObj { Message = logMessage, Date = DateTime.Now }));
 
             nLogLogger(logMessage, level);
+
+            if (level.Equals("error"))
+            {
+                await submitSQLError(logMessage);
+            }
+            
+        }
+
+        private async Task submitSQLError(string logMessage)
+        {
+            string[] executionText = { logMessage };
+
+            sqlServerInteraction.executeNonReturningStoredProcedure("InsertErrorLog", executionText);
         }
 
         public void initializeNLogLogger()

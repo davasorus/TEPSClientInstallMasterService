@@ -14,12 +14,13 @@ namespace TEPSClientInstallService_Master.Controllers
         private loggingClass loggingClass = new loggingClass();
         private sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
 
-        private static HttpClient httpClient = new HttpClient();
+        
 
         //not implemented yet
         public async Task<IHttpActionResult> Post(int id)
         {
             string json = "";
+            HttpClient httpClient = new HttpClient();
 
             try
             {

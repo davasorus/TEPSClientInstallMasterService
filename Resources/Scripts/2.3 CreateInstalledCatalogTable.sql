@@ -14,8 +14,6 @@ CREATE TABLE [dbo].[InstalledCatalog]
     [DotNet_Installed] BIT NOT NULL DEFAULT 0, 
     [SQLCLR201232_Installed ] BIT NOT NULL DEFAULT 0, 
     [SQLCLR201264_Installed] BIT NOT NULL DEFAULT 0, 
-    [DBSync_Installed] BIT NOT NULL DEFAULT 0, 
-    [DBProviderService_Installed] BIT NOT NULL DEFAULT 0, 
     [DBProvider_Installed] BIT NOT NULL DEFAULT 0, 
     [LERMS_Installed] BIT NOT NULL DEFAULT 0, 
     [CAD_Installed] BIT NOT NULL DEFAULT 0, 

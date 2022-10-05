@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[GetInstalledCatalog]
+CREATE PROCEDURE [dbo].[GetInstalledCatalogs]
 	
 AS
 	begin

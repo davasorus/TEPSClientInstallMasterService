@@ -28,14 +28,44 @@ namespace TEPSClientInstallService_Master.Classes
                     foreach (DataRow row in clientByIDTable.Rows)
                     {
                         value = row[1].ToString();
+
+                        checkForCatalog("GetInstalledCatalogs", exec);
                     }
                     return value;
                 }
+
+                checkForCatalog("GetInstalledCatalogs", exec);
+
                 return null;
             }
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public bool checkForCatalog(string storedProcedureName, string[] executionText)
+        {
+            string[] exec = { executionText[0] };
+
+            DataTable catalogByIDTable = new DataTable();
+
+            bool value = false;
+
+            try
+            {
+                catalogByIDTable = executeReturningStoredProcedure(storedProcedureName, exec);
+
+                if (catalogByIDTable.Rows.Count > 0)
+                {
+                    return true;
+                }
+                executeNonReturningStoredProcedure("InsertNewCatalog", exec);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 
@@ -85,6 +115,14 @@ namespace TEPSClientInstallService_Master.Classes
                         prm.Add(new SqlParameter("@PreReq_Path", SqlDbType.NVarChar) { Value = executionText[1] });
                         break;
 
+                    case "InsertNewCatalog":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        break;
+
+                    case "InsertNewClient":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        break;
+
                     default:
                         break;
                 }
@@ -130,7 +168,7 @@ namespace TEPSClientInstallService_Master.Classes
 
                         break;
 
-                    case "GetInstalledCatalog":
+                    case "GetInstalledCatalogs":
                         using (da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(result);
@@ -155,6 +193,16 @@ namespace TEPSClientInstallService_Master.Classes
                             da.Fill(result);
                         }
 
+                        break;
+
+                    case "GetInstalledCatalogByID":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+                        break;
+
+                    default:
                         break;
                 }
 

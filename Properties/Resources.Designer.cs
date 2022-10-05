@@ -94,7 +94,7 @@ namespace TEPSClientInstallService_Master.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to insert INTO TylerClientIMS.dbo.EnrolledInstanceType
-        ///VALUES (&apos;UNINSTALLED&apos;)
+        ///VALUES (&apos;UNKNOWN&apos;)
         ///insert INTO TylerClientIMS.dbo.EnrolledInstanceType
         ///VALUES (&apos;PROD&apos;)
         ///insert INTO TylerClientIMS.dbo.EnrolledInstanceType
@@ -140,25 +140,12 @@ namespace TEPSClientInstallService_Master.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE PROCEDURE [dbo].[GetInstalledCatalog]
-        ///	
-        ///AS
-        ///	begin
-        ///	Select * from dbo.InstalledCatalog
-        ///	end.
-        /// </summary>
-        internal static string CreateSPGetInstalledCatalog {
-            get {
-                return ResourceManager.GetString("CreateSPGetInstalledCatalog", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to CREATE PROCEDURE [dbo].[GetTop50Errors]
         ///	
         ///AS
         ///	begin
         ///	SELECT TOP (50) [Id]
+        ///      ,[ClientName]
         ///      ,[ErrorMessage]
         ///      ,[ErrorDate_Time]
         ///  FROM [TylerClientIMS].[dbo].[errorLog]

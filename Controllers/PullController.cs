@@ -11,7 +11,7 @@ namespace TEPSClientInstallService_Master.Controllers
     public class PullController : ApiController
     {
         private loggingClass loggingClass = new loggingClass();
-        private sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
+        private sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
         private utilityClass utilityClass = new utilityClass();
 
         //not implemented in agent yet

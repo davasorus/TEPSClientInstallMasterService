@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
@@ -14,14 +15,15 @@ namespace TEPSClientInstallService_Master
     {
         private loggingClass loggingClass = new loggingClass();
         private installerClass installerClass = new installerClass();
-        private sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
+        private remoteConnectionClass remoteConnectionClass = new remoteConnectionClass();
+        private sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
 
         public TEPSClientInstallServiceMaster()
         {
             InitializeComponent();
         }
 
-        protected override void OnStart(string[] args)
+        protected override async void OnStart(string[] args)
         {
             loggingClass.initializeNLogLogger();
 
@@ -61,6 +63,8 @@ namespace TEPSClientInstallService_Master
             {
                 //installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe");
             }
+
+            await getNetworkMap();
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -100,6 +104,18 @@ namespace TEPSClientInstallService_Master
             else
             {
                 configValues.DBName = dbName;
+            }
+        }
+
+        private async Task getNetworkMap()
+        {
+            await remoteConnectionClass.getRemoteMachines();
+
+            foreach (var item in netWorkMachines.names)
+            {
+                string[] executionText = { item.ToString() };
+
+                sqlServerInteraction.checkForClient("GetClientByName", executionText);
             }
         }
     }

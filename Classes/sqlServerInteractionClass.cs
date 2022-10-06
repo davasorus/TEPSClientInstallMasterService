@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace TEPSClientInstallService_Master.Classes
 {
-    public class sqlServerInteraction
+    public class sqlServerInteractionClass
     {
         private loggingClass loggingClass = new loggingClass();
 
@@ -69,6 +69,53 @@ namespace TEPSClientInstallService_Master.Classes
             }
         }
 
+        public void checkForClient(string storedProcedureName, string[] executionText)
+        {
+            string[] exec = { executionText[0] };
+            List<string> exec1 = new List<string>();
+
+            DataTable catalogByIDTable = new DataTable();
+            DataTable clientByNameTable = new DataTable();
+
+            //bool value = false;
+
+            try
+            {
+                clientByNameTable = executeReturningStoredProcedure(storedProcedureName, exec);
+
+                if (clientByNameTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in clientByNameTable.Rows)
+                    {
+                        exec1.Add(row[0].ToString());
+
+                        //checkForCatalog("GetInstalledCatalogs", exec);
+                    }
+                }
+                else
+                {
+                    executeNonReturningStoredProcedure("InsertNewClient", exec);
+                    //executeNonReturningStoredProcedure("InsertNewCatalog", exec);
+                }
+
+                catalogByIDTable = executeReturningStoredProcedure("GetInstalledCatalogByID", exec1.ToArray());
+
+                if (catalogByIDTable.Rows.Count > 0)
+                {
+                }
+                else
+                {
+                    executeNonReturningStoredProcedure("InsertNewCatalog", exec1.ToArray());
+                }
+
+                //return false;
+            }
+            catch (Exception ex)
+            {
+                //return false;
+            }
+        }
+
         #endregion returning sql data
 
         #region retrieving SQL Data
@@ -80,7 +127,7 @@ namespace TEPSClientInstallService_Master.Classes
             SqlConnection cnn;
             List<SqlParameter> prm = new List<SqlParameter>();
 
-            connectionstring = $"Data Source ={configValues.DBName};Initial Catalog=TylerClientIMS;Trusted_Connection=True;";
+            connectionstring = $"Data Source =lazerus;Initial Catalog=TylerClientIMS;Trusted_Connection=True;";
             cnn = new SqlConnection(connectionstring);
 
             try
@@ -120,7 +167,7 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "InsertNewClient":
-                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
                         break;
 
                     default:
@@ -148,7 +195,7 @@ namespace TEPSClientInstallService_Master.Classes
             SqlDataAdapter da = null;
             List<SqlParameter> prm = new List<SqlParameter>();
 
-            connectionstring = $"Data Source ={configValues.DBName};Initial Catalog=TylerClientIMS;Trusted_Connection=True;";
+            connectionstring = $"Data Source =lazerus;Initial Catalog=TylerClientIMS;Trusted_Connection=True;";
             cnn = new SqlConnection(connectionstring);
 
             try
@@ -196,10 +243,23 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetInstalledCatalogByID":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(result);
                         }
+                        break;
+
+                    case "GetClientByName":
+                        prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
+                        cmd.Parameters.AddRange(prm.ToArray());
+
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
                         break;
 
                     default:

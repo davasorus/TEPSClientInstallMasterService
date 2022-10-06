@@ -85,7 +85,8 @@
   <ItemGroup>
     <Compile Include="Classes\installerClass.cs" />
     <Compile Include="Classes\loggingClass.cs" />
-    <Compile Include="Classes\sqlServerInteraction.cs" />
+    <Compile Include="Classes\remoteConnectionClass.cs" />
+    <Compile Include="Classes\sqlServerInteractionClass.cs" />
     <Compile Include="Classes\utilityClass.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PullController.cs" />
@@ -136,6 +137,9 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="G5L9qP30_400x400.ico" />
+    <EmbeddedResource Include="Resources\Scripts\CreateSPGetClientByName.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Resources\Scripts\CreateSPInsertNewCatalog.sql" />
     <EmbeddedResource Include="Resources\Scripts\CreateSPInsertNewClient.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

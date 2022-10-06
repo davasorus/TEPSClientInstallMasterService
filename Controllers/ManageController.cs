@@ -12,7 +12,7 @@ namespace TEPSClientInstallService_Master.Controllers
     public class ManageController : ApiController
     {
         private loggingClass loggingClass = new loggingClass();
-        private sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
+        private sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
 
         //not implemented yet
         public async Task<IHttpActionResult> Post(int id)

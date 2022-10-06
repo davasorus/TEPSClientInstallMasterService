@@ -137,17 +137,88 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="G5L9qP30_400x400.ico" />
-    <EmbeddedResource Include="Resources\Scripts\CreateSPGetClientByName.sql">
+    <EmbeddedResource Include="Resources\Scripts\4.31 CreateSPUpdateCatalogSQLComp3564.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <None Include="Resources\Scripts\CreateSPInsertNewCatalog.sql" />
-    <EmbeddedResource Include="Resources\Scripts\CreateSPInsertNewClient.sql">
+    <EmbeddedResource Include="Resources\Scripts\4.30 CreateSPUpdateCatalogSQLComp3532.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Scripts\CreateSPGetInstalledCatalogByID.sql">
+    <EmbeddedResource Include="Resources\Scripts\4.29 CreateSPUpdateCatalogSQLComp0464.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Scripts\CreateSPGetInstalledCatalogs.sql">
+    <EmbeddedResource Include="Resources\Scripts\4.28 CreateSPUpdateCatalogSQLCLR201264.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.27 CreateSPUpdateCatalogSQLCLR201232.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.26 CreateSPUpdateCatalogSQLCLR200864.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.25 CreateSPUpdateCatalogSQLCLR200832.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.24 CreateSPUpdateCatalogScenePD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.23 CreateSPUpdateCatalogMobileConfig.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.22CreateSPUpdateCatalogMergeMobile.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.21 CreateSPUpdateCatalogLERMS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.20 CreateSPUpdateCatalogLEMobile.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.19 CreateSPUpdateCatalogGISComp64.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.18 CreateSPUpdateCatalogGISComp32.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.17 CreateSPUpdateCatalogFireMobile.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.16 CreateSPUpdateCatalogDotNet.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.15 CreateSPUpdateCatalogDBProvider.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.14 CreateSPUpdateCatalogCADObserver.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.13 CreateSPUpdateCatalogCAD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.12 CreateSPInsertNewClient.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.11 CreateSPInsertNewCatalog.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.10 CreateSPGetTop50Error.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.9 CreateSPGetInstalledCatalogs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.8 CreateSPGetInstalledCatalogByID.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.7 CreateSPGetClientMachineProfiles.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.6 CreateSPGetClientByName.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.5 CreateSPGetClientByID.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.32 CreateSPUpdateCatalogUpdater.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Scripts\2.3 CreateInstalledCatalogTable.sql">
@@ -179,15 +250,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Scripts\2.5 CreateInstallHistoryTable.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Scripts\CreateSPGetTop50Error.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Scripts\CreateSPGetClientMachineProfiles.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Scripts\CreateSPGetClientByID.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Scripts\3.1 PopulateEnrolledInstanceType.sql">

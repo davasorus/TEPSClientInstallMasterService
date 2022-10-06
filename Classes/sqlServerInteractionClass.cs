@@ -170,6 +170,106 @@ namespace TEPSClientInstallService_Master.Classes
                         prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
                         break;
 
+                    case "UpdateCatalogSQLComp3532":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@SQLCompact3532_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogSQLComp3564":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@SQLCompact35364_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogSQLComp0464":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@SQLCompact0464_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogSQLCLR200832":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@SQLCLR200832_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogSQLCLR200864":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@SQLCLR200864_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogScenePD":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@ScenePD_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogUpdater":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@Updater_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogGISComp32":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@GISComponents32_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogGISComp64":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@GISComponents64_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogDotNet":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@DotNet_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogSQLCLR201232":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@SQLCLR201232_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogSQLCLR201264":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@SQLCLR201264_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogDBProvider":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@DBProvider_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogLERMS":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@LERMS_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogCAD":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@CAD_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogCADObserver":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@CADObserver_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogFireMobile":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@FireMobile_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogLEMobile":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@LEMobile_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogMergeMobile":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@MobileMerge_installed", SqlDbType.Bit) { Value = executionText[1] });
+                        break;
+
+                    case "UpdateCatalogMobileConfig":
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@MobileAgencyConfig", SqlDbType.NVarChar) { Value = executionText[1] });
+                        break;
+
                     default:
                         break;
                 }

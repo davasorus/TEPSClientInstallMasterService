@@ -170,12 +170,12 @@ namespace TEPSClientInstallService_Master.Classes
                         prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
                         break;
 
-                    case "UpdateCatalogSQLComp3532": 
+                    case "UpdateCatalogSQLComp3532":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@SQLCompact3532_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
 
-                    case "UpdateCatalogSQLComp3564": 
+                    case "UpdateCatalogSQLComp3564":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@SQLCompact3564_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
@@ -200,17 +200,17 @@ namespace TEPSClientInstallService_Master.Classes
                         prm.Add(new SqlParameter("@ScenePD_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
 
-                    case "UpdateCatalogUpdater": 
+                    case "UpdateCatalogUpdater":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@Updater_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
 
-                    case "UpdateCatalogGISComp32": 
+                    case "UpdateCatalogGISComp32":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@GISComponents32_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
 
-                    case "UpdateCatalogGISComp64": 
+                    case "UpdateCatalogGISComp64":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@GISComponents64_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
@@ -220,27 +220,27 @@ namespace TEPSClientInstallService_Master.Classes
                         prm.Add(new SqlParameter("@DotNet_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
 
-                    case "UpdateCatalogSQLCLR201232": 
+                    case "UpdateCatalogSQLCLR201232":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@SQLCLR201232_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
 
-                    case "UpdateCatalogSQLCLR201264": 
+                    case "UpdateCatalogSQLCLR201264":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@SQLCLR201264_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
 
-                    case "UpdateCatalogDBProvider": 
+                    case "UpdateCatalogDBProvider":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@DBProvider_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
 
-                    case "UpdateCatalogLERMS": 
+                    case "UpdateCatalogLERMS":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@LERMS_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;
 
-                    case "UpdateCatalogCAD": 
+                    case "UpdateCatalogCAD":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@CAD_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
                         break;

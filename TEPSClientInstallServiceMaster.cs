@@ -64,7 +64,7 @@ namespace TEPSClientInstallService_Master
                 //installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Agent\\Updater", "TEPS Automated Agent Updater.exe");
             }
 
-            await getNetworkMap();
+            Task task1 = Task.Factory.StartNew(() => getNetworkMap());
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)

@@ -53,7 +53,7 @@ namespace TEPSClientInstallService_Master
 
             Directory.CreateDirectory("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater");
 
-            File.Copy(Path.Combine("C:\\Services\\Tyler-Client-Install-Master-Service", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe"), true);
+            File.Copy(Path.Combine("C:\\Services\\Tyler-Client-Install-Master-Service", "TEPS Automated Master Service Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe"), true);
 
             Process[] localbyName = Process.GetProcessesByName("TEPS Client Install Master Service Updater Utility");
             if (localbyName.Length > 0)
@@ -71,7 +71,7 @@ namespace TEPSClientInstallService_Master
         {
             if (!File.Exists(Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe")))
             {
-                File.Move(Path.Combine("C:\\Services\\Tyler-Client-Install-Master-Service", "TEPS Automated Agent Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe"));
+                File.Move(Path.Combine("C:\\Services\\Tyler-Client-Install-Master-Service", "TEPS Automated Master Service Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe"));
             }
 
             Process[] localbyName = Process.GetProcessesByName("TEPS Automated Agent Updater");

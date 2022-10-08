@@ -118,15 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CreateSPGetClientByID" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Scripts\CreateSPGetClientByID.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="CreateSPGetClientMachineProfiles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Scripts\CreateSPGetClientMachineProfiles.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="CreateSPGetTop50Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Scripts\CreateSPGetTop50Error.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="_1_Create_DB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Scripts\1 Create DB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>

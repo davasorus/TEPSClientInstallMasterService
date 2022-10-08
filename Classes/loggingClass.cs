@@ -11,7 +11,7 @@ namespace TEPSClientInstallService_Master.Classes
     {
         private static Logger _logger;
 
-        private static sqlServerInteraction sqlServerInteraction = new sqlServerInteraction();
+        private static sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
 
         private static string applicationName = "TEPS Automated Client Install Master Service " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         private readonly string logFileName = $@"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Agent\Logging\{applicationName}.json";

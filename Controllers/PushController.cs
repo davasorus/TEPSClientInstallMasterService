@@ -1160,6 +1160,53 @@ namespace TEPSClientInstallService_Master.Controllers
             return Json(json);
         }
 
+        public async Task<IHttpActionResult> PostInstallIncidentObserver(int id)
+        {
+            string json = "";
+            HttpClient httpClient = new HttpClient();
+
+            try
+            {
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
+                string[] exec = { id.ToString() };
+
+                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+                if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+                {
+                    httpClient.DefaultRequestHeaders.Accept.Add(new
+                      MediaTypeWithQualityHeaderValue("application/json"));
+                }
+
+                var sqlID = sqlServerInteraction.returnClientName("GetClientByID", exec);
+
+                var URI = $"http://{sqlID}:8080/install/PostUninstallObserverAsync";
+
+                loggingClass.logEntryWriter($"forwarding message to {sqlID}", "info");
+                loggingClass.logEntryWriter($"message forwarded {URI}", "info");
+
+                var package = Request.Content.ReadAsStringAsync().Result;
+
+                var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await httpClient.PostAsync(URI, stringContent);
+
+                json = await response.Content.ReadAsStringAsync();
+
+                loggingClass.logEntryWriter($"response received {json}", "info");
+                await utilityClass.parseJsonForMessage(sqlID, enrolledInstanceType, json);
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
+                json = ex.Message;
+            }
+
+            return Json(json);
+        }
+
         #endregion client redirect install
 
         #region client redirect mobile config

@@ -107,55 +107,5 @@ namespace TEPSClientInstallService_Master.Properties {
                 return ResourceManager.GetString("_3_1_PopulateEnrolledInstanceType", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CREATE PROCEDURE [dbo].[GetClientByID]
-        ///	@id int
-        ///AS
-        ///	begin
-        ///	select * from TylerClientIMS.dbo.Clients
-        ///	where Id = @id
-        ///	end
-        ///.
-        /// </summary>
-        internal static string CreateSPGetClientByID {
-            get {
-                return ResourceManager.GetString("CreateSPGetClientByID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CREATE PROCEDURE [dbo].[GetClientMachineProfiles]
-        ///	
-        ///AS
-        ///	begin
-        ///	Select * from dbo.Clients
-        ///	end
-        ///.
-        /// </summary>
-        internal static string CreateSPGetClientMachineProfiles {
-            get {
-                return ResourceManager.GetString("CreateSPGetClientMachineProfiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CREATE PROCEDURE [dbo].[GetTop50Errors]
-        ///	
-        ///AS
-        ///	begin
-        ///	SELECT TOP (50) [Id]
-        ///      ,[ClientName]
-        ///      ,[ErrorMessage]
-        ///      ,[ErrorDate_Time]
-        ///  FROM [TylerClientIMS].[dbo].[errorLog]
-        ///	end
-        ///.
-        /// </summary>
-        internal static string CreateSPGetTop50Error {
-            get {
-                return ResourceManager.GetString("CreateSPGetTop50Error", resourceCulture);
-            }
-        }
     }
 }

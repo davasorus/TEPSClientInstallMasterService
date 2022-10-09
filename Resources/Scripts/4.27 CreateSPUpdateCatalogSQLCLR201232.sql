@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[UpdateCatalogSQLCLR201264]
+CREATE PROCEDURE [dbo].[UpdateCatalogSQLCLR201232]
 	@Client_ID int,
 	@SQLCLR201264_installed bit
 AS

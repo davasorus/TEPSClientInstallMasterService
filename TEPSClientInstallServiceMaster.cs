@@ -6,6 +6,7 @@ using System.ServiceProcess;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.SelfHost;
 using TEPSClientInstallService_Master.Classes;
 
@@ -30,6 +31,10 @@ namespace TEPSClientInstallService_Master
             getConfigValues();
 
             var config = new HttpSelfHostConfiguration($"http://{Environment.MachineName}:8081");
+
+            var cors = new EnableCorsAttribute($"http://{Environment.MachineName}", "*", "*");
+
+            config.EnableCors();
 
             config.Routes.MapHttpRoute(
                 name: "API",

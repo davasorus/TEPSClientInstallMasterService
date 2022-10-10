@@ -99,7 +99,7 @@ namespace TEPSClientInstallService_Master.Classes
 
                         break;
 
-                    case string a when message.Contains("Enterprise Updater"):
+                    case string a when message.Contains("Updater"):
                         sqlServerInteractionClass.executeNonReturningStoredProcedure("UpdateCatalogUpdater", exec1.ToArray());
 
                         break;

@@ -37,7 +37,7 @@ namespace TEPSClientInstallService_Master.Classes
 
                 sqlServerInteraction.executeNonReturningStoredProcedure("InsertErrorLog", executionText);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logEntryWriter(ex.ToString(), "error");
             }
@@ -51,7 +51,7 @@ namespace TEPSClientInstallService_Master.Classes
 
                 sqlServerInteraction.executeNonReturningStoredProcedure("InsertInstallHistory", executionText);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logEntryWriter(ex.ToString(), "error");
             }
@@ -65,7 +65,7 @@ namespace TEPSClientInstallService_Master.Classes
 
                 sqlServerInteraction.executeNonReturningStoredProcedure("InsertUninstallHistory", executionText);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logEntryWriter(ex.ToString(), "error");
             }

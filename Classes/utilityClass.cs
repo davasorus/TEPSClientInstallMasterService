@@ -39,7 +39,6 @@ namespace TEPSClientInstallService_Master.Classes
                     else
                     {
                         await loggingClass.submitSQLInstallLog(clientName, EnrolledInstanceType, item.message);
-
                         await updateInstalledCatalog(item.message, clientName);
                     }
                 }
@@ -68,6 +67,10 @@ namespace TEPSClientInstallService_Master.Classes
                 {
                     exec1.Add(row[0].ToString());
                 }
+            }
+            else
+            {
+                sqlServerInteractionClass.checkForCatalog("GetInstalledCatalogByID", exec);
             }
 
             if (message.Contains("not found on machine") || message.Contains("- Uninstalled") || message.Contains("failed to install"))

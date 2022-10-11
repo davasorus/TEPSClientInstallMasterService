@@ -23,6 +23,11 @@ namespace TEPSClientInstallService_Master.Classes
                         await loggingClass.submitSQLUninstallInstallLog(clientName, EnrolledInstanceType, item.message);
                         await updateInstalledCatalog(item.message, clientName);
                     }
+                    else if(item.message.Contains("not found on machine"))
+                    {
+                        await loggingClass.submitSQLUninstallInstallLog(clientName, EnrolledInstanceType, item.message);
+                        await updateInstalledCatalog(item.message, clientName);
+                    }
                     else
                     {
                         await loggingClass.submitSQLError(item.message, clientName);

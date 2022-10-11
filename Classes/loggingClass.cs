@@ -31,23 +31,44 @@ namespace TEPSClientInstallService_Master.Classes
 
         public async Task submitSQLError(string logMessage, string clientName)
         {
-            string[] executionText = { logMessage, clientName };
+            try
+            {
+                string[] executionText = { logMessage, clientName };
 
-            sqlServerInteraction.executeNonReturningStoredProcedure("InsertErrorLog", executionText);
+                sqlServerInteraction.executeNonReturningStoredProcedure("InsertErrorLog", executionText);
+            }
+            catch (Exception ex)
+            {
+                logEntryWriter(ex.ToString(), "error");
+            }
         }
 
         public async Task submitSQLInstallLog(string clientname, int EnrolledInstanceType, string logMessage)
         {
-            string[] executionText = { clientname, EnrolledInstanceType.ToString(), logMessage };
+            try
+            {
+                string[] executionText = { clientname, EnrolledInstanceType.ToString(), logMessage };
 
-            sqlServerInteraction.executeNonReturningStoredProcedure("InsertInstallHistory", executionText);
+                sqlServerInteraction.executeNonReturningStoredProcedure("InsertInstallHistory", executionText);
+            }
+            catch (Exception ex)
+            {
+                logEntryWriter(ex.ToString(), "error");
+            }
         }
 
         public async Task submitSQLUninstallInstallLog(string clientname, int EnrolledInstanceType, string logMessage)
         {
-            string[] executionText = { clientname, EnrolledInstanceType.ToString(), logMessage };
+            try
+            {
+                string[] executionText = { clientname, EnrolledInstanceType.ToString(), logMessage };
 
-            sqlServerInteraction.executeNonReturningStoredProcedure("InsertUninstallHistory", executionText);
+                sqlServerInteraction.executeNonReturningStoredProcedure("InsertUninstallHistory", executionText);
+            }
+            catch (Exception ex)
+            {
+                logEntryWriter(ex.ToString(), "error");
+            }
         }
 
         public void initializeNLogLogger()

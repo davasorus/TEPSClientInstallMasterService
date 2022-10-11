@@ -29,12 +29,12 @@ namespace TEPSClientInstallService_Master.Classes
                     {
                         value = row[1].ToString();
 
-                        checkForCatalog("GetInstalledCatalogs", exec);
+                        checkForCatalog("GetInstalledCatalogByID", exec);
                     }
                     return value;
                 }
 
-                checkForCatalog("GetInstalledCatalogs", exec);
+                checkForCatalog("GetInstalledCatalogByID", exec);
 
                 return null;
             }
@@ -54,12 +54,14 @@ namespace TEPSClientInstallService_Master.Classes
 
             try
             {
-                catalogByIDTable = executeReturningStoredProcedure(storedProcedureName, exec);
+                //catalogByIDTable = executeReturningStoredProcedure(storedProcedureName, exec);
+                catalogByIDTable = executeReturningStoredProcedure("GetInstalledCatalogByID", exec);
 
                 if (catalogByIDTable.Rows.Count > 0)
                 {
                     return true;
                 }
+
                 executeNonReturningStoredProcedure("InsertNewCatalog", exec);
                 return false;
             }
@@ -88,14 +90,11 @@ namespace TEPSClientInstallService_Master.Classes
                     foreach (DataRow row in clientByNameTable.Rows)
                     {
                         exec1.Add(row[0].ToString());
-
-                        //checkForCatalog("GetInstalledCatalogs", exec);
                     }
                 }
                 else
                 {
-                    executeNonReturningStoredProcedure("InsertNewClient", exec);
-                    //executeNonReturningStoredProcedure("InsertNewCatalog", exec);
+                    executeNonReturningStoredProcedure("InsertNewClient", executionText);
                 }
 
                 catalogByIDTable = executeReturningStoredProcedure("GetInstalledCatalogByID", exec1.ToArray());
@@ -107,12 +106,10 @@ namespace TEPSClientInstallService_Master.Classes
                 {
                     executeNonReturningStoredProcedure("InsertNewCatalog", exec1.ToArray());
                 }
-
-                //return false;
             }
             catch (Exception ex)
             {
-                //return false;
+                loggingClass.logEntryWriter(ex.ToString(), "error");
             }
         }
 
@@ -372,7 +369,8 @@ namespace TEPSClientInstallService_Master.Classes
             }
             catch (Exception ex)
             {
-                throw;
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+                throw ex;
             }
         }
 

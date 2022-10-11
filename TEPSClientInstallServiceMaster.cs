@@ -118,9 +118,9 @@ namespace TEPSClientInstallService_Master
 
             foreach (var item in netWorkMachines.names)
             {
-                string[] executionText = { item.ToString() };
+                //string[] executionText = { item.ToString() };
 
-                sqlServerInteraction.checkForClient("GetClientByName", executionText);
+                //sqlServerInteraction.checkForClient("GetClientByName", executionText);
             }
         }
     }

@@ -43,7 +43,7 @@ Designed to programmatically interact with the [Agent Service](https://github.co
 }
   
 ## Install the service
-  
+- download the tool from the most recent official release [of the service updating tool](https://github.com/davasorus/TEPSClientInstallService-MasterUpdaterUtility/tags)
 ## Uninstall the service
 -  open up a command prompt terminal in admin mode
 - paste cd C:\Windows\Microsoft.NET\Framework\v4.0.30319 in and press enter

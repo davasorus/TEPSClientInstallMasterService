@@ -14,7 +14,7 @@ jobs:
       uses: repo-sync/pull-request@v2
       with:
         source_branch: "dev-branch"                                 # If blank, default: triggered branch
-        destination_branch: "master"                      # If blank, default: master
+        destination_branch: "live"                      # If blank, default: master
         pr_title: "Pulling ${{ github.event.commits[0].message }} into Live" # Title of pull request
         pr_body: ":crown: An automated Pull Request"              # Full markdown support, requires pr_title to be set
         pr_template: ""   # Path to pull request template, requires pr_title to be set, excludes pr_body

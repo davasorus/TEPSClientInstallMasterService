@@ -30,6 +30,11 @@ namespace TEPSClientInstallService_Master.Classes
                         value = row[1].ToString();
 
                         checkForCatalog("GetInstalledCatalogByID", exec);
+
+                        if (executionText[1].Length > 0)
+                        {
+                            executeNonReturningStoredProcedure("UpdateClientInstance", executionText);
+                        }
                     }
                     return value;
                 }
@@ -49,8 +54,6 @@ namespace TEPSClientInstallService_Master.Classes
             string[] exec = { executionText[0] };
 
             DataTable catalogByIDTable = new DataTable();
-
-            bool value = false;
 
             try
             {
@@ -110,6 +113,28 @@ namespace TEPSClientInstallService_Master.Classes
             catch (Exception ex)
             {
                 loggingClass.logEntryWriter(ex.ToString(), "error");
+            }
+        }
+
+        public void checkForSettings(string storedProcedurename, string[] executionText)
+        {
+            string[] exec = { executionText[6] };
+            DataTable settingByInstance = new DataTable();
+
+            settingByInstance = executeReturningStoredProcedure("GetSettingByInstance", exec);
+
+            if (settingByInstance.Rows.Count > 0)
+            {
+                executeNonReturningStoredProcedure("UpdateSettingCADServerName", executionText);
+                executeNonReturningStoredProcedure("UpdateSettingESSServerName", executionText);
+                executeNonReturningStoredProcedure("UpdateSettingGISInstance", executionText);
+                executeNonReturningStoredProcedure("UpdateSettingGISServerName", executionText);
+                executeNonReturningStoredProcedure("UpdateSettingRecordsServerName", executionText);
+                executeNonReturningStoredProcedure("UpdateSettingMobileServerName", executionText);
+            }
+            else
+            {
+                loggingClass.logEntryWriter("this should not have happened", "error");
             }
         }
 
@@ -267,6 +292,41 @@ namespace TEPSClientInstallService_Master.Classes
                         prm.Add(new SqlParameter("@MobileAgencyConfig", SqlDbType.NVarChar) { Value = executionText[1] });
                         break;
 
+                    case "UpdateSettingESSServerName":
+                        prm.Add(new SqlParameter("@EssServerName", SqlDbType.NVarChar) { Value = executionText[1] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[6]) });
+                        break;
+
+                    case "UpdateSettingRecordsServerName":
+                        prm.Add(new SqlParameter("@RecordsServerName", SqlDbType.NVarChar) { Value = executionText[2] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[6]) });
+                        break;
+
+                    case "UpdateSettingCADServerName":
+                        prm.Add(new SqlParameter("@CADServerName", SqlDbType.NVarChar) { Value = executionText[3] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[6]) });
+                        break;
+
+                    case "UpdateSettingGISServerName":
+                        prm.Add(new SqlParameter("@GISServerName", SqlDbType.NVarChar) { Value = executionText[4] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[6]) });
+                        break;
+
+                    case "UpdateSettingGISInstance":
+                        prm.Add(new SqlParameter("@GISInstance", SqlDbType.NVarChar) { Value = executionText[5] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[6]) });
+                        break;
+
+                    case "UpdateSettingMobileServerName":
+                        prm.Add(new SqlParameter("@MobileServername", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[6]) });
+                        break;
+
+                    case "UpdateClientInstance":
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+                        prm.Add(new SqlParameter("@client_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        break;
+
                     default:
                         break;
                 }
@@ -357,6 +417,15 @@ namespace TEPSClientInstallService_Master.Classes
                             da.Fill(result);
                         }
 
+                        break;
+
+                    case "GetSettingByInstance":
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = executionText[0] });
+                        cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
                         break;
 
                     default:

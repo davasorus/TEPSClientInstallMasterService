@@ -72,7 +72,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -119,7 +119,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -166,7 +166,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -213,7 +213,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -260,7 +260,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -307,7 +307,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -354,7 +354,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -406,7 +406,7 @@ namespace TEPSClientInstallService_Master.Controllers
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
 
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -454,7 +454,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -502,7 +502,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -550,7 +550,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -598,7 +598,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -646,7 +646,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -694,7 +694,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -742,7 +742,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -790,7 +790,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -838,7 +838,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1074,7 +1074,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1121,7 +1121,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1168,7 +1168,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1219,7 +1219,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1266,7 +1266,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1313,7 +1313,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 //httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1364,7 +1364,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1412,7 +1412,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1459,7 +1459,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1507,7 +1507,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1554,7 +1554,7 @@ namespace TEPSClientInstallService_Master.Controllers
             try
             {
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
-                string[] exec = { id.ToString() };
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;

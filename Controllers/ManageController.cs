@@ -13,6 +13,7 @@ namespace TEPSClientInstallService_Master.Controllers
     {
         private loggingClass loggingClass = new loggingClass();
         private sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
+        private utilityClass utilityClass = new utilityClass();
 
         //not implemented yet
         public async Task<IHttpActionResult> Post(int id)
@@ -58,6 +59,26 @@ namespace TEPSClientInstallService_Master.Controllers
             }
 
             return Json(json);
+        }
+
+        public async Task<IHttpActionResult> PostUpdateSettingsDB(int id)
+        {
+            string json = "";
+
+            try
+            {
+                await utilityClass.configureSettingsTableAsync(Request.Content.ReadAsStringAsync().Result);
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
+                json = ex.Message;
+
+                return BadRequest(json);
+            }
+
+            return Ok("DataBase Updated");
         }
     }
 }

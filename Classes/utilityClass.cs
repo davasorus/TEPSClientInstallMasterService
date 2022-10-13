@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -23,7 +25,7 @@ namespace TEPSClientInstallService_Master.Classes
                         await loggingClass.submitSQLUninstallInstallLog(clientName, EnrolledInstanceType, item.message);
                         await updateInstalledCatalog(item.message, clientName);
                     }
-                    else if(item.message.Contains("not found on machine"))
+                    else if (item.message.Contains("not found on machine"))
                     {
                         await loggingClass.submitSQLUninstallInstallLog(clientName, EnrolledInstanceType, item.message);
                         await updateInstalledCatalog(item.message, clientName);
@@ -308,6 +310,129 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
                 }
             }
+        }
+
+        public async Task configureSettingsTableAsync(string body)
+        {
+            try
+            {
+                //var jsonFilePackage = JsonConvert.DeserializeObject<serverConfigObj>(body);
+
+                dynamic jsonObj = JsonConvert.DeserializeObject(body);
+
+                var MobileServer = jsonObj["MobileServer"];
+                var ESSServer = jsonObj["ESSServer"];
+                var MSPServer = jsonObj["MSPServer"];
+                var CADServer = jsonObj["CADServer"];
+                var GISServer = jsonObj["GISServer"];
+                var GISInstance = jsonObj["GISInstance"];
+                var Instance = jsonObj["Instance"];
+
+                string[] execcutionText = { MobileServer, ESSServer, MSPServer, CADServer, GISServer, GISInstance, Instance };
+
+                sqlServerInteractionClass.checkForSettings("", execcutionText);
+
+                parseORI(body);
+
+                parseFDID(body);
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+            }
+        }
+
+        private async Task<string> parseORI(string body)
+        {
+            //serverConfigObj.configFileORIObjs.Clear();
+
+            try
+            {
+                for (var i = 1; i < body.Length; i++)
+                {
+                    string txt = $"ORI{i}";
+
+                    var jsonFilePackage = (JObject)JsonConvert.DeserializeObject(body);
+
+                    JToken oriToken = jsonFilePackage.SelectToken("PoliceList[?(@.FieldName == '" + txt + "')]");
+
+                    if (oriToken != null)
+                    {
+                        string ori = oriToken.Value<string>("ORI");
+
+                        // serverConfigObj.configFileORIObjs.Add(new jsonConfigFileORIObj { FieldName = txt, ORI = ori });
+                    }
+                    else
+                    {
+                        i = body.Length;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string logEntry1 = ex.ToString();
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
+
+                return "error";
+            }
+
+            return "";
+        }
+
+        private async Task<string> parseFDID(string body)
+        {
+            //serverConfigObj.configFileFDIDObjs.Clear();
+
+            try
+            {
+                for (var i = 1; i < body.Length; i++)
+                {
+                    string txt = $"FDID{i}";
+
+                    var jsonFilePackage = (JObject)JsonConvert.DeserializeObject(body);
+
+                    JToken fdidToken = jsonFilePackage.SelectToken("FireList[?(@.FieldName == '" + txt + "')]");
+
+                    if (fdidToken != null)
+                    {
+                        string fdid = fdidToken.Value<string>("FDID");
+
+                        //serverConfigObj.configFileFDIDObjs.Add(new jsonConfigFileFDIDObj { FieldName = txt, FDID = fdid });
+                    }
+                    else
+                    {
+                        i = body.Length;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string logEntry1 = ex.ToString();
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
+
+                return "error";
+            }
+
+            return "";
+        }
+
+        public async Task<string> grabsettingsByInstanceID(int id)
+        {
+            string[] exec = { id.ToString() };
+            string data = "";
+            DataTable dt = new DataTable();
+
+            dt = sqlServerInteractionClass.executeReturningStoredProcedure("GetSettingByInstance", exec);
+
+            data = JsonConvert.SerializeObject(dt);
+
+            return data;
         }
     }
 }

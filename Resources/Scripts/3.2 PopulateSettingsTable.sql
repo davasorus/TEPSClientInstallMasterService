@@ -1,0 +1,6 @@
+insert into dbo.Settings(EnrolledInstanceType_ID)
+  values (2)
+ insert into dbo.Settings(EnrolledInstanceType_ID)
+  values (3)
+insert into dbo.Settings(EnrolledInstanceType_ID)
+  values (4)

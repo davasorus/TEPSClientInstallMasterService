@@ -889,7 +889,9 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
-                string[] exec = { id.ToString() };
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
+
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -934,7 +936,9 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
-                string[] exec = { id.ToString() };
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
+
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -979,7 +983,9 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
-                string[] exec = { id.ToString() };
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
+
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1024,7 +1030,9 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
-                string[] exec = { id.ToString() };
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
+
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
                 httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
@@ -1181,7 +1189,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
                 var sqlID = sqlServerInteraction.returnClientName("GetClientByID", exec);
 
-                var URI = $"http://{sqlID}:8080/install/PostUninstallObserverAsync";
+                var URI = $"http://{sqlID}:8080/install/PostIncidentObserverInstall";
 
                 loggingClass.logEntryWriter($"forwarding message to {sqlID}", "info");
                 loggingClass.logEntryWriter($"message forwarded {URI}", "info");

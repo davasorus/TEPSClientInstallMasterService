@@ -13,14 +13,14 @@ namespace TEPSClientInstallService_Master.Classes
 
         public string returnClientName(string storedProcedureName, string[] executionText)
         {
-            string[] exec = { executionText[0] };
-
-            DataTable clientByIDTable = new DataTable();
-
-            string value = "";
-
             try
             {
+                string[] exec = { executionText[0] };
+
+                DataTable clientByIDTable = new DataTable();
+
+                string value = "";
+
                 clientByIDTable = executeReturningStoredProcedure(storedProcedureName, exec);
 
                 if (clientByIDTable.Rows.Count > 0)
@@ -31,20 +31,30 @@ namespace TEPSClientInstallService_Master.Classes
 
                         checkForCatalog("GetInstalledCatalogByID", exec);
 
-                        if (executionText[1].Length > 0)
+                        try
                         {
-                            executeNonReturningStoredProcedure("UpdateClientInstance", executionText);
+                            if (executionText[1].Length > 0)
+                            {
+                                executeNonReturningStoredProcedure("UpdateClientInstance", executionText);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            loggingClass.logEntryWriter(ex.ToString(), "error");
                         }
                     }
                     return value;
                 }
 
                 checkForCatalog("GetInstalledCatalogByID", exec);
+                executeNonReturningStoredProcedure("UpdateClientInstance", executionText);
 
                 return null;
             }
             catch (Exception ex)
             {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
                 return null;
             }
         }

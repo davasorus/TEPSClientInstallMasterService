@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -19,6 +20,8 @@ namespace TEPSClientInstallService_Master
         private installerClass installerClass = new installerClass();
         private remoteConnectionClass remoteConnectionClass = new remoteConnectionClass();
         private sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
+
+        private PreReqClass PreReqClass = new PreReqClass();
 
         public TEPSClientInstallServiceMaster()
         {
@@ -118,13 +121,36 @@ namespace TEPSClientInstallService_Master
 
         private async Task getNetworkMap()
         {
-            await remoteConnectionClass.getRemoteMachines();
-
-            foreach (var item in netWorkMachines.names)
+            try
             {
-                //string[] executionText = { item.ToString() };
+                string path = "";
 
-                //sqlServerInteraction.checkForClient("GetClientByName", executionText);
+                string[] exec = { "2" };
+
+                var test = sqlServerInteraction.returnSettingsDBValue(exec);
+
+                foreach (DataRow dr in test.Rows)
+                {
+                    if (!String.IsNullOrEmpty(dr[8].ToString()))
+                    {
+                        loggingClass.logEntryWriter($"{dr[8]}", "debug");
+
+                        path = Path.Combine(dr[8].ToString(), "_Client-Installation");
+                    }
+                }
+
+                if (Directory.Exists(path))
+                {
+                    PreReqClass.preReqSearchCopy(path);
+                }
+                else
+                {
+                    loggingClass.logEntryWriter($"Unable to find {path}, unable to download pre reqs and client files", "error");
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
             }
         }
     }
@@ -142,4 +168,38 @@ internal class configValues
 
     public static readonly string applicationName = "TEPS Automated Client Install Master Service " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
     public static readonly string logFileName = $@"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Master-Service\Logging\{applicationName}.json";
+}
+
+internal class preReqFileName
+{
+    public static readonly string dotNet47 = "dotNetFx471_Full_setup_Offline.exe";
+    public static readonly string dotNet48 = "ndp48-x86-x64-allos-enu.exe";
+    public static readonly string sqlCE3532 = "SSCERuntime_x86-ENU.msi";
+    public static readonly string sqlCE3564 = "SSCERuntime_x64-ENU.msi";
+    public static readonly string sqlCE4032 = "SSCERuntime_x86-ENU-4.0.exe";
+    public static readonly string sqlCE4064 = "SSCERuntime_x64-ENU-4.0.exe";
+    public static readonly string nwpsGis32 = "NewWorld.Gis.Components.x86.msi";
+    public static readonly string nwpsGis64 = "NewWorld.Gis.Components.x64.msi";
+    public static readonly string msSync64 = "Synchronization-v2.1-x64-ENU.msi";
+    public static readonly string msProServ64 = "ProviderServices-v2.1-x64-ENU.msi";
+    public static readonly string msDbPro64 = "DatabaseProviders-v3.1-x64-ENU.msi";
+    public static readonly string msSync32 = "Synchronization-v2.1-x86-ENU.msi";
+    public static readonly string msProServ32 = "ProviderServices-v2.1-x86-ENU.msi";
+    public static readonly string msDbPro32 = "DatabaseProviders-v3.1-x86-ENU.msi";
+    public static readonly string nwpsUpdate = "NewWorld.Management.Updater.msi";
+    public static readonly string sqlClr32 = "SQLSysClrTypesx86.msi";
+    public static readonly string sqlClr64 = "SQLSysClrTypesx64.msi";
+    public static readonly string sqlClr201232 = "SQLSysClrTypesx2012.msi";
+    public static readonly string sqlClr201264 = "SQLSysClrTypesx642012.msi";
+    public static readonly string SCPD6 = "SPD6-4-8993.exe";
+    public static readonly string SCPD6AX = "SPDX6-4-3091.exe";
+    public static readonly string SCPD4 = "SPD4-0-92.exe";
+}
+
+internal class clientFileName
+{
+    public static readonly string mspClient = "NewWorldMSPClient.msi";
+    public static readonly string cadClient64 = "NewWorld.Enterprise.CAD.Client.x64.msi";
+    public static readonly string cadClient32 = "NewWorld.Enterprise.CAD.ManagementClient.x64.msi";
+    public static readonly string cadIncObs64 = "NewWorld.Enterprise.CAD.IncidentObserver.x64.msi";
 }

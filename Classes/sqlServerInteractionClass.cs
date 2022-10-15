@@ -149,6 +149,28 @@ namespace TEPSClientInstallService_Master.Classes
             }
         }
 
+        public DataTable returnSettingsDBValue(string[] exec)
+        {
+            try
+            {
+                DataTable settingDBValues = new DataTable();
+
+                settingDBValues = executeReturningStoredProcedure("GetSettingByInstance", exec);
+
+                if (settingDBValues.Rows.Count > 0)
+                {
+                    return settingDBValues;
+                }
+
+                return settingDBValues;
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+                return null;
+            }
+        }
+
         #endregion returning sql data
 
         #region retrieving SQL Data
@@ -339,8 +361,8 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "UpdateSettingClientInstallPath":
-                        prm.Add(new SqlParameter("@ClientInstallPath", SqlDbType.NVarChar) { Value = executionText[0] });
-                        prm.Add(new SqlParameter("@client_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        prm.Add(new SqlParameter("@ClientInstallPath", SqlDbType.NVarChar) { Value = executionText[7] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[6]) });
                         break;
 
                     default:

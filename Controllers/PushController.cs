@@ -26,7 +26,7 @@ namespace TEPSClientInstallService_Master.Controllers
             {
                 string[] exec = { id.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -74,7 +74,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -121,7 +121,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -215,7 +215,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -262,7 +262,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -309,7 +309,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -356,7 +356,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -408,7 +408,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -456,7 +456,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -504,7 +504,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -552,7 +552,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -600,7 +600,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -648,7 +648,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -696,7 +696,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -744,7 +744,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -792,7 +792,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -840,7 +840,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -889,9 +889,11 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
-                string[] exec = { id.ToString() };
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
+
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -934,9 +936,11 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
-                string[] exec = { id.ToString() };
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
+
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -979,9 +983,11 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
-                string[] exec = { id.ToString() };
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
+
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1024,9 +1030,11 @@ namespace TEPSClientInstallService_Master.Controllers
 
             try
             {
-                string[] exec = { id.ToString() };
+                int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
+
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1076,7 +1084,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1123,7 +1131,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1170,7 +1178,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1181,7 +1189,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
                 var sqlID = sqlServerInteraction.returnClientName("GetClientByID", exec);
 
-                var URI = $"http://{sqlID}:8080/install/PostUninstallObserverAsync";
+                var URI = $"http://{sqlID}:8080/install/PostIncidentObserverInstall";
 
                 loggingClass.logEntryWriter($"forwarding message to {sqlID}", "info");
                 loggingClass.logEntryWriter($"message forwarded {URI}", "info");
@@ -1221,7 +1229,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1268,7 +1276,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
@@ -1315,7 +1323,7 @@ namespace TEPSClientInstallService_Master.Controllers
                 int enrolledInstanceType = utilityClass.parseRequestBodyEnrolledInstanceType(Request.Content.ReadAsStringAsync().Result);
                 string[] exec = { id.ToString(), enrolledInstanceType.ToString() };
 
-                //httpClient.Timeout = TimeSpan.FromMinutes(10);
+                httpClient.Timeout = TimeSpan.FromMinutes(10);
                 var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
                 if (defaultRequestHeaders.Accept == null || !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))

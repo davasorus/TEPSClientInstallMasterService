@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 using System.Timers;
@@ -56,9 +57,12 @@ namespace TEPSClientInstallService_Master
 
             timer.Elapsed += Timer_Elapsed;
 
-            Directory.CreateDirectory("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater");
+            Directory.CreateDirectory(configValues.updaterStoragePath);
+            Directory.CreateDirectory(configValues.addonStoragePath);
+            Directory.CreateDirectory(configValues.clientsStoragePath);
+            Directory.CreateDirectory(configValues.preReqStoragePath);
 
-            File.Copy(Path.Combine("C:\\Services\\Tyler-Client-Install-Master-Service", "TEPS Automated Master Service Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe"), true);
+            File.Copy(Path.Combine(configValues.serviceRunPath, "TEPS Automated Master Service Updater.exe"), Path.Combine(configValues.updaterStoragePath, "TEPS Automated Master Service Updater.exe"), true);
 
             Process[] localbyName = Process.GetProcessesByName("TEPS Client Install Master Service Updater Utility");
             if (localbyName.Length > 0)
@@ -129,4 +133,13 @@ namespace TEPSClientInstallService_Master
 internal class configValues
 {
     public static string DBName { get; set; }
+
+    public static readonly string updaterStoragePath = "C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater";
+    public static readonly string addonStoragePath = "C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\File Repository\\Addons";
+    public static readonly string clientsStoragePath = "C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\File Repository\\Clients";
+    public static readonly string preReqStoragePath = "C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\File Repository\\Pre Reqs";
+    public static readonly string serviceRunPath = "C:\\Services\\Tyler-Client-Install-Master-Service";
+
+    public static readonly string applicationName = "TEPS Automated Client Install Master Service " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+    public static readonly string logFileName = $@"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Master-Service\Logging\{applicationName}.json";
 }

@@ -327,8 +327,9 @@ namespace TEPSClientInstallService_Master.Classes
                 var GISServer = jsonObj["GISServer"];
                 var GISInstance = jsonObj["GISInstance"];
                 var Instance = jsonObj["Instance"];
+                var ClientPath = jsonObj["Client-Installation-Path"];
 
-                string[] execcutionText = { MobileServer, ESSServer, MSPServer, CADServer, GISServer, GISInstance, Instance };
+                string[] execcutionText = { MobileServer, ESSServer, MSPServer, CADServer, GISServer, GISInstance, Instance, ClientPath };
 
                 sqlServerInteractionClass.checkForSettings("", execcutionText);
 

@@ -141,6 +141,7 @@ namespace TEPSClientInstallService_Master.Classes
                 executeNonReturningStoredProcedure("UpdateSettingGISServerName", executionText);
                 executeNonReturningStoredProcedure("UpdateSettingRecordsServerName", executionText);
                 executeNonReturningStoredProcedure("UpdateSettingMobileServerName", executionText);
+                executeNonReturningStoredProcedure("UpdateSettingClientInstallPath", executionText);
             }
             else
             {
@@ -334,6 +335,11 @@ namespace TEPSClientInstallService_Master.Classes
 
                     case "UpdateClientInstance":
                         prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+                        prm.Add(new SqlParameter("@client_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        break;
+
+                    case "UpdateSettingClientInstallPath":
+                        prm.Add(new SqlParameter("@ClientInstallPath", SqlDbType.NVarChar) { Value = executionText[0] });
                         prm.Add(new SqlParameter("@client_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
                         break;
 

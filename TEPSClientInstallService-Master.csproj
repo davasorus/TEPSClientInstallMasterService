@@ -124,6 +124,7 @@
   <ItemGroup>
     <Compile Include="Classes\installerClass.cs" />
     <Compile Include="Classes\loggingClass.cs" />
+    <Compile Include="Classes\PreReqClass.cs" />
     <Compile Include="Classes\remoteConnectionClass.cs" />
     <Compile Include="Classes\sqlServerInteractionClass.cs" />
     <Compile Include="Classes\utilityClass.cs" />
@@ -176,6 +177,9 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="G5L9qP30_400x400.ico" />
+    <EmbeddedResource Include="Resources\Scripts\4.40 CreateSPUpdateClientInstallPath.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Scripts\3.2 PopulateSettingsTable.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

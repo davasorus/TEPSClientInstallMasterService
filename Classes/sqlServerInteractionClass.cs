@@ -199,6 +199,30 @@ namespace TEPSClientInstallService_Master.Classes
             }
         }
 
+        public DataTable returnPreReqTable(string[] exec)
+        {
+            try
+            {
+                DataTable returnPreReqTable = new DataTable();
+
+                returnPreReqTable = executeReturningStoredProcedure("GetPreReqByName", exec);
+
+                if(returnPreReqTable.Rows.Count > 0)
+                {
+                    return returnPreReqTable;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+                return null;
+            }
+        }
+
         #endregion returning sql data
 
         #region retrieving SQL Data

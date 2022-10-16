@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace TEPSClientInstallService_Master.Classes
@@ -54,9 +55,61 @@ namespace TEPSClientInstallService_Master.Classes
 
         public int parseRequestBodyEnrolledInstanceType(string body)
         {
-            dynamic jsonObj = JsonConvert.DeserializeObject(body);
+            int foundItem = 0;
 
-            return jsonObj["Instance"];
+            var grabbedItem = "";
+            try
+            {
+                JArray jArray = JArray.Parse(body);
+
+                var jsonObjects = jArray.OfType<JObject>().ToList();
+
+                foreach (JObject jObject in jsonObjects)
+                {
+                    grabbedItem = jObject.GetValue("Instance").ToString();
+
+                    loggingClass.logEntryWriter(foundItem.ToString(), "debug");
+                }
+
+                int y = int.Parse(grabbedItem.ToString());
+
+                foundItem = y;
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+            }
+
+            return foundItem;
+        }
+
+        public string parseRequestBodyFileName(string body)
+        {
+            string foundItem = "";
+            var grabbedItem = "";
+            try
+            {
+                JArray jArray = JArray.Parse(body);
+
+                var jsonObjects = jArray.OfType<JObject>().ToList();
+
+                foreach (JObject jObject in jsonObjects)
+                {
+                    grabbedItem = jObject.GetValue("FileName").ToString();
+
+                    loggingClass.logEntryWriter(foundItem.ToString(), "debug");
+                }
+
+                foundItem = grabbedItem;
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+
+                foundItem = null;
+            }
+
+            return foundItem;
         }
 
         public async Task updateInstalledCatalog(string message, string clientName)

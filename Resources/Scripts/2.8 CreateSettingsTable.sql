@@ -4,9 +4,10 @@ CREATE TABLE [dbo].[Settings] (
     [MobileServerName]         NVARCHAR (MAX) NULL,
     [RecordsServerName]        NVARCHAR (MAX) NULL,
     [ESSServerName]            NVARCHAR (MAX) NULL,
-	[CADServerName]            NVARCHAR (MAX) NULL,
+    [CADServerName]            NVARCHAR (MAX) NULL,
     [GISServername]            NVARCHAR (MAX) NULL,
     [GISInstance]              NVARCHAR (MAX) NULL,
+	[Client-Installation-Path]              NVARCHAR (MAX) NULL,
     [InitialCreationDate_Time] DATETIME2 (7)  DEFAULT (getdate()) NOT NULL,
     [Date_TimeModified]        DATETIME2 (7)  NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)

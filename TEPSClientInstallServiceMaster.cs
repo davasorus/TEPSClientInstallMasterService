@@ -60,6 +60,13 @@ namespace TEPSClientInstallService_Master
 
             timer.Elapsed += Timer_Elapsed;
 
+            Timer timer1 = new Timer
+            {
+                Interval = 3600000
+            };
+
+            timer.Elapsed += Timer_Elapsed1;
+
             Directory.CreateDirectory(configValues.updaterStoragePath);
             Directory.CreateDirectory(configValues.addonStoragePath);
             Directory.CreateDirectory(configValues.clientsStoragePath);
@@ -77,6 +84,11 @@ namespace TEPSClientInstallService_Master
             }
 
             Task task1 = Task.Factory.StartNew(() => getNetworkMap());
+        }
+
+        private void Timer_Elapsed1(object sender, ElapsedEventArgs e)
+        {
+            
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -123,29 +135,35 @@ namespace TEPSClientInstallService_Master
         {
             try
             {
-                string path = "";
+                string[] test = {"2","3","4" };
 
-                string[] exec = { "2" };
-
-                var test = sqlServerInteraction.returnSettingsDBValue(exec);
-
-                foreach (DataRow dr in test.Rows)
+                foreach(var item in test)
                 {
-                    if (!String.IsNullOrEmpty(dr[8].ToString()))
+                    string path = "";
+
+                    string[] exec = { item };
+
+                    var test1 = sqlServerInteraction.returnSettingsDBValue(exec);
+
+                    foreach (DataRow dr in test1.Rows)
                     {
-                        loggingClass.logEntryWriter($"{dr[8]}", "debug");
+                        if (!String.IsNullOrEmpty(dr[8].ToString()))
+                        {
+                            loggingClass.logEntryWriter($"{dr[8]}", "debug");
 
-                        path = Path.Combine(dr[8].ToString(), "_Client-Installation");
+                            path = Path.Combine(dr[8].ToString(), "_Client-Installation");
+
+
+                        }
                     }
-                }
 
-                if (Directory.Exists(path))
-                {
-                    PreReqClass.preReqSearchCopy(path);
-                }
-                else
-                {
-                    loggingClass.logEntryWriter($"Unable to find {path}, unable to download pre reqs and client files", "error");
+                    if (Directory.Exists(path))
+                    {
+                        PreReqClass.preReqRename("SSCERuntime_x64-ENU.exe", preReqFileName.sqlCE4064, "SQL Compact Edition 4.0", path);
+                        PreReqClass.preReqRename("SSCERuntime_x86-ENU.exe", preReqFileName.sqlCE4032, "SQL Compact Edition 4.0", path);
+
+                        PreReqClass.preReqSearchCopy(path, exec[0]);
+                    }
                 }
             }
             catch (Exception ex)

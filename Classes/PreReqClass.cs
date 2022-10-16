@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 
 namespace TEPSClientInstallService_Master.Classes
@@ -8,15 +9,75 @@ namespace TEPSClientInstallService_Master.Classes
     {
         private loggingClass loggingClass = new loggingClass();
 
+        private sqlServerInteractionClass sqlServerInteractionClass = new sqlServerInteractionClass();
+
         private bool flag;
+
+        public async void preReqCopy(string ID)
+        {
+            try
+            {
+                string path = "";
+
+                string[] exec = { ID };
+
+                var test = sqlServerInteractionClass.returnSettingsDBValue(exec);
+
+                foreach (DataRow dr in test.Rows)
+                {
+                    if (!String.IsNullOrEmpty(dr[8].ToString()))
+                    {
+                        loggingClass.logEntryWriter($"{dr[8]}", "debug");
+
+                        path = Path.Combine(dr[8].ToString(), "_Client-Installation");
+                    }
+                }
+
+                if (Directory.Exists(path))
+                {
+                    preReqSearchCopy(path, ID);
+                }
+                else
+                {
+                    loggingClass.logEntryWriter($"Unable to find {path}, unable to download pre reqs and client files", "error");
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+            }
+        }
 
         #region pre req copy code
 
         //Mobile copy
         //this will copy a file from one location to another location as sent by PreReqSearch above
-        public async void mobileCopy(string FileNamePath)
+        public async void mobileCopy(string fileNamePath, string ID)
+        {
+            if (ID.Equals("2"))
+            {
+                prodCopy(fileNamePath);
+            }
+            else if (ID.Equals("3"))
+            {
+                testCopy(fileNamePath);
+            }
+            else if (ID.Equals("4"))
+            {
+                trainCopy(fileNamePath);
+            }
+        }
+
+        private async void prodCopy(string fileNamePath)
         {
             string replace = "";
+
+            string clientPath = Path.Combine(configValues.clientsStoragePath, "prod");
+            string preReqPath = Path.Combine(configValues.preReqStoragePath, "prod");
+
+            Directory.CreateDirectory(preReqPath);
+            Directory.CreateDirectory(clientPath);
+
             List<string> clients = new List<string>()
             {
                 clientFileName.mspClient, clientFileName.cadClient64, clientFileName.cadIncObs64, clientFileName.cadClient32
@@ -24,15 +85,15 @@ namespace TEPSClientInstallService_Master.Classes
 
             try
             {
-                string filename = Path.GetFileName(FileNamePath);
+                string filename = Path.GetFileName(fileNamePath);
 
                 foreach (var client in clients)
                 {
                     if (filename.Equals(client))
                     {
-                        replace = Path.Combine(configValues.clientsStoragePath, filename);
+                        replace = Path.Combine(clientPath, filename);
 
-                        File.Copy(FileNamePath, replace, true);
+                        File.Copy(fileNamePath, replace, true);
 
                         string logEntry1 = filename + " has been copied.";
 
@@ -42,9 +103,114 @@ namespace TEPSClientInstallService_Master.Classes
                     }
                 }
 
-                replace = Path.Combine(configValues.preReqStoragePath, filename);
+                replace = Path.Combine(preReqPath, filename);
 
-                File.Copy(FileNamePath, replace, true);
+                File.Copy(fileNamePath, replace, true);
+
+                string logEntry = filename + " has been copied.";
+
+                loggingClass.logEntryWriter(logEntry, "info");
+            }
+            catch (Exception ex)
+            {
+                string logEntry = ex.ToString();
+
+                loggingClass.logEntryWriter(logEntry, "info");
+
+                //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
+            }
+        }
+
+        private async void testCopy(string fileNamePath)
+        {
+            string replace = "";
+
+            string clientPath = Path.Combine(configValues.clientsStoragePath, "test");
+            string preReqPath = Path.Combine(configValues.preReqStoragePath, "test");
+
+            Directory.CreateDirectory(preReqPath);
+            Directory.CreateDirectory(clientPath);
+            List<string> clients = new List<string>()
+            {
+                clientFileName.mspClient, clientFileName.cadClient64, clientFileName.cadIncObs64, clientFileName.cadClient32
+            };
+
+            try
+            {
+                string filename = Path.GetFileName(fileNamePath);
+
+                foreach (var client in clients)
+                {
+                    if (filename.Equals(client))
+                    {
+                        replace = Path.Combine(clientPath, filename);
+
+                        File.Copy(fileNamePath, replace, true);
+
+                        string logEntry1 = filename + " has been copied.";
+
+                        loggingClass.logEntryWriter(logEntry1, "info");
+
+                        return;
+                    }
+                }
+
+                replace = Path.Combine(preReqPath, filename);
+
+                File.Copy(fileNamePath, replace, true);
+
+                string logEntry = filename + " has been copied.";
+
+                loggingClass.logEntryWriter(logEntry, "info");
+            }
+            catch (Exception ex)
+            {
+                string logEntry = ex.ToString();
+
+                loggingClass.logEntryWriter(logEntry, "info");
+
+                //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
+            }
+        }
+
+        private async void trainCopy(string fileNamePath)
+        {
+            string replace = "";
+
+            string clientPath = Path.Combine(configValues.clientsStoragePath, "train");
+            string preReqPath = Path.Combine(configValues.preReqStoragePath, "train");
+
+            Directory.CreateDirectory(preReqPath);
+            Directory.CreateDirectory(clientPath);
+
+            List<string> clients = new List<string>()
+            {
+                clientFileName.mspClient, clientFileName.cadClient64, clientFileName.cadIncObs64, clientFileName.cadClient32
+            };
+
+            try
+            {
+                string filename = Path.GetFileName(fileNamePath);
+
+                foreach (var client in clients)
+                {
+                    if (filename.Equals(client))
+                    {
+                        replace = Path.Combine(clientPath, filename);
+
+                        File.Copy(fileNamePath, replace, true);
+
+                        string logEntry1 = filename + " has been copied.";
+
+                        loggingClass.logEntryWriter(logEntry1, "info");
+
+                        return;
+                    }
+                }
+
+                replace = Path.Combine(preReqPath, filename);
+
+                File.Copy(fileNamePath, replace, true);
 
                 string logEntry = filename + " has been copied.";
 
@@ -94,7 +260,6 @@ namespace TEPSClientInstallService_Master.Classes
             }
             catch (IOException ex)
             {
-                loggingClass.nLogLogger(ex.ToString(), "error");
             }
             catch (Exception ex)
             {
@@ -140,7 +305,7 @@ namespace TEPSClientInstallService_Master.Classes
         }
 
         //this searches through a user entered directory/subdirectories for pre reqs
-        public async void preReqSearchCopy(string sDir)
+        public async void preReqSearchCopy(string sDir, string ID)
         {
             try
             {
@@ -148,11 +313,11 @@ namespace TEPSClientInstallService_Master.Classes
                 {
                     foreach (var filename in Directory.GetFiles(directory))
                     {
-                        mobileCopy(filename);
+                        mobileCopy(filename, ID);
                     }
 
                     //this is so that a folder that has a subdirectory will also be searched
-                    preReqSearchCopy(directory);
+                    preReqSearchCopy(directory, ID);
                 }
             }
             catch (Exception ex)

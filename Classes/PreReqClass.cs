@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace TEPSClientInstallService_Master.Classes
 {
-    internal class PreReqClass
+    internal class preReqClass
     {
         private loggingClass loggingClass = new loggingClass();
 
@@ -13,33 +14,37 @@ namespace TEPSClientInstallService_Master.Classes
 
         private bool flag;
 
-        public async void preReqCopy(string ID)
+        public async Task updatePreReqs()
         {
             try
             {
-                string path = "";
+                string[] test = { "2", "3", "4" };
 
-                string[] exec = { ID };
-
-                var test = sqlServerInteractionClass.returnSettingsDBValue(exec);
-
-                foreach (DataRow dr in test.Rows)
+                foreach (var item in test)
                 {
-                    if (!String.IsNullOrEmpty(dr[8].ToString()))
+                    string path = "";
+
+                    string[] exec = { item };
+
+                    var test1 = sqlServerInteractionClass.returnSettingsDBValue(exec);
+
+                    foreach (DataRow dr in test1.Rows)
                     {
-                        loggingClass.logEntryWriter($"{dr[8]}", "debug");
+                        if (!String.IsNullOrEmpty(dr[8].ToString()))
+                        {
+                            loggingClass.logEntryWriter($"{dr[8]}", "debug");
 
-                        path = Path.Combine(dr[8].ToString(), "_Client-Installation");
+                            path = Path.Combine(dr[8].ToString(), "_Client-Installation");
+                        }
                     }
-                }
 
-                if (Directory.Exists(path))
-                {
-                    preReqSearchCopy(path, ID);
-                }
-                else
-                {
-                    loggingClass.logEntryWriter($"Unable to find {path}, unable to download pre reqs and client files", "error");
+                    if (Directory.Exists(path))
+                    {
+                        preReqRename("SSCERuntime_x64-ENU.exe", preReqFileName.sqlCE4064, "SQL Compact Edition 4.0", path);
+                        preReqRename("SSCERuntime_x86-ENU.exe", preReqFileName.sqlCE4032, "SQL Compact Edition 4.0", path);
+
+                        await preReqSearchCopy(path, exec[0]);
+                    }
                 }
             }
             catch (Exception ex)
@@ -52,23 +57,23 @@ namespace TEPSClientInstallService_Master.Classes
 
         //Mobile copy
         //this will copy a file from one location to another location as sent by PreReqSearch above
-        public async void mobileCopy(string fileNamePath, string ID)
+        public async void CopyDistributor(string fileNamePath, string ID)
         {
             if (ID.Equals("2"))
             {
-                prodCopy(fileNamePath);
+                prodCopy(fileNamePath, ID);
             }
             else if (ID.Equals("3"))
             {
-                testCopy(fileNamePath);
+                testCopy(fileNamePath, ID);
             }
             else if (ID.Equals("4"))
             {
-                trainCopy(fileNamePath);
+                trainCopy(fileNamePath, ID);
             }
         }
 
-        private async void prodCopy(string fileNamePath)
+        private async void prodCopy(string fileNamePath, string ID)
         {
             string replace = "";
 
@@ -99,6 +104,10 @@ namespace TEPSClientInstallService_Master.Classes
 
                         loggingClass.logEntryWriter(logEntry1, "info");
 
+                        string[] executionText = { ID, filename, replace };
+
+                        await sqlServerInteractionClass.checkForPreReq("GetPreReqByName", executionText);
+
                         return;
                     }
                 }
@@ -110,6 +119,10 @@ namespace TEPSClientInstallService_Master.Classes
                 string logEntry = filename + " has been copied.";
 
                 loggingClass.logEntryWriter(logEntry, "info");
+
+                string[] executionText1 = { ID, filename, replace };
+
+                await sqlServerInteractionClass.checkForPreReq("GetPreReqByName", executionText1);
             }
             catch (Exception ex)
             {
@@ -121,7 +134,7 @@ namespace TEPSClientInstallService_Master.Classes
             }
         }
 
-        private async void testCopy(string fileNamePath)
+        private async void testCopy(string fileNamePath, string ID)
         {
             string replace = "";
 
@@ -151,6 +164,10 @@ namespace TEPSClientInstallService_Master.Classes
 
                         loggingClass.logEntryWriter(logEntry1, "info");
 
+                        string[] executionText = { ID, filename, replace };
+
+                        await sqlServerInteractionClass.checkForPreReq("GetPreReqByName", executionText);
+
                         return;
                     }
                 }
@@ -162,6 +179,10 @@ namespace TEPSClientInstallService_Master.Classes
                 string logEntry = filename + " has been copied.";
 
                 loggingClass.logEntryWriter(logEntry, "info");
+
+                string[] executionText1 = { ID, filename, replace };
+
+                await sqlServerInteractionClass.checkForPreReq("GetPreReqByName", executionText1);
             }
             catch (Exception ex)
             {
@@ -173,7 +194,7 @@ namespace TEPSClientInstallService_Master.Classes
             }
         }
 
-        private async void trainCopy(string fileNamePath)
+        private async void trainCopy(string fileNamePath, string ID)
         {
             string replace = "";
 
@@ -204,6 +225,10 @@ namespace TEPSClientInstallService_Master.Classes
 
                         loggingClass.logEntryWriter(logEntry1, "info");
 
+                        string[] executionText = { ID, filename, replace };
+
+                        await sqlServerInteractionClass.checkForPreReq("GetPreReqByName", executionText);
+
                         return;
                     }
                 }
@@ -215,6 +240,10 @@ namespace TEPSClientInstallService_Master.Classes
                 string logEntry = filename + " has been copied.";
 
                 loggingClass.logEntryWriter(logEntry, "info");
+
+                string[] executionText1 = { ID, filename, replace };
+
+                await sqlServerInteractionClass.checkForPreReq("GetPreReqByName", executionText1);
             }
             catch (Exception ex)
             {
@@ -305,7 +334,7 @@ namespace TEPSClientInstallService_Master.Classes
         }
 
         //this searches through a user entered directory/subdirectories for pre reqs
-        public async void preReqSearchCopy(string sDir, string ID)
+        public async Task preReqSearchCopy(string sDir, string ID)
         {
             try
             {
@@ -313,7 +342,7 @@ namespace TEPSClientInstallService_Master.Classes
                 {
                     foreach (var filename in Directory.GetFiles(directory))
                     {
-                        mobileCopy(filename, ID);
+                        CopyDistributor(filename, ID);
                     }
 
                     //this is so that a folder that has a subdirectory will also be searched

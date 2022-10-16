@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -18,10 +17,9 @@ namespace TEPSClientInstallService_Master
     {
         private loggingClass loggingClass = new loggingClass();
         private installerClass installerClass = new installerClass();
-        private remoteConnectionClass remoteConnectionClass = new remoteConnectionClass();
         private sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
 
-        private PreReqClass PreReqClass = new PreReqClass();
+        private preReqClass preReqClass = new preReqClass();
 
         public TEPSClientInstallServiceMaster()
         {
@@ -65,7 +63,7 @@ namespace TEPSClientInstallService_Master
                 Interval = 3600000
             };
 
-            timer.Elapsed += Timer_Elapsed1;
+            timer1.Elapsed += Timer1_Elapsed;
 
             Directory.CreateDirectory(configValues.updaterStoragePath);
             Directory.CreateDirectory(configValues.addonStoragePath);
@@ -80,22 +78,21 @@ namespace TEPSClientInstallService_Master
             }
             else
             {
-                installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe");
+                installerClass.openProgram(configValues.updaterStoragePath, "TEPS Automated Master Service Updater.exe");
             }
 
-            Task task1 = Task.Factory.StartNew(() => getNetworkMap());
+            Task task1 = Task.Factory.StartNew(() => updatePreReqs());
         }
 
-        private void Timer_Elapsed1(object sender, ElapsedEventArgs e)
+        private void Timer1_Elapsed(object sender, ElapsedEventArgs e)
         {
-            
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (!File.Exists(Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe")))
+            if (!File.Exists(Path.Combine(configValues.updaterStoragePath, "TEPS Automated Master Service Updater.exe")))
             {
-                File.Move(Path.Combine("C:\\Services\\Tyler-Client-Install-Master-Service", "TEPS Automated Master Service Updater.exe"), Path.Combine("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe"));
+                File.Move(Path.Combine(configValues.serviceRunPath, "TEPS Automated Master Service Updater.exe"), Path.Combine(configValues.updaterStoragePath, "TEPS Automated Master Service Updater.exe"));
             }
 
             Process[] localbyName = Process.GetProcessesByName("TEPS Automated Agent Updater");
@@ -104,7 +101,7 @@ namespace TEPSClientInstallService_Master
             }
             else
             {
-                installerClass.openProgram("C:\\ProgramData\\Tyler Technologies\\Public Safety\\Tyler-Client-Install-Master-Service\\Updater", "TEPS Automated Master Service Updater.exe");
+                installerClass.openProgram(configValues.updaterStoragePath, "TEPS Automated Master Service Updater.exe");
             }
         }
 
@@ -131,45 +128,9 @@ namespace TEPSClientInstallService_Master
             }
         }
 
-        private async Task getNetworkMap()
+        private async Task updatePreReqs()
         {
-            try
-            {
-                string[] test = {"2","3","4" };
-
-                foreach(var item in test)
-                {
-                    string path = "";
-
-                    string[] exec = { item };
-
-                    var test1 = sqlServerInteraction.returnSettingsDBValue(exec);
-
-                    foreach (DataRow dr in test1.Rows)
-                    {
-                        if (!String.IsNullOrEmpty(dr[8].ToString()))
-                        {
-                            loggingClass.logEntryWriter($"{dr[8]}", "debug");
-
-                            path = Path.Combine(dr[8].ToString(), "_Client-Installation");
-
-
-                        }
-                    }
-
-                    if (Directory.Exists(path))
-                    {
-                        PreReqClass.preReqRename("SSCERuntime_x64-ENU.exe", preReqFileName.sqlCE4064, "SQL Compact Edition 4.0", path);
-                        PreReqClass.preReqRename("SSCERuntime_x86-ENU.exe", preReqFileName.sqlCE4032, "SQL Compact Edition 4.0", path);
-
-                        PreReqClass.preReqSearchCopy(path, exec[0]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                loggingClass.logEntryWriter(ex.ToString(), "error");
-            }
+            await preReqClass.updatePreReqs();
         }
     }
 }

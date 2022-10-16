@@ -207,7 +207,7 @@ namespace TEPSClientInstallService_Master.Classes
 
                 returnPreReqTable = executeReturningStoredProcedure("GetPreReqByName", exec);
 
-                if(returnPreReqTable.Rows.Count > 0)
+                if (returnPreReqTable.Rows.Count > 0)
                 {
                     return returnPreReqTable;
                 }

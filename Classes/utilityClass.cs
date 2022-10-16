@@ -67,8 +67,6 @@ namespace TEPSClientInstallService_Master.Classes
                 foreach (JObject jObject in jsonObjects)
                 {
                     grabbedItem = jObject.GetValue("Instance").ToString();
-
-                    loggingClass.logEntryWriter(foundItem.ToString(), "debug");
                 }
 
                 int y = int.Parse(grabbedItem.ToString());
@@ -77,7 +75,16 @@ namespace TEPSClientInstallService_Master.Classes
             }
             catch (Exception ex)
             {
-                loggingClass.logEntryWriter(ex.ToString(), "error");
+                try
+                {
+                    dynamic jsonObj = JsonConvert.DeserializeObject(body);
+
+                    return jsonObj["Instance"];
+                }
+                catch (Exception ex1)
+                {
+                    loggingClass.logEntryWriter(ex1.ToString(), "error");
+                }
             }
 
             return foundItem;
@@ -96,17 +103,24 @@ namespace TEPSClientInstallService_Master.Classes
                 foreach (JObject jObject in jsonObjects)
                 {
                     grabbedItem = jObject.GetValue("FileName").ToString();
-
-                    loggingClass.logEntryWriter(foundItem.ToString(), "debug");
                 }
 
                 foundItem = grabbedItem;
             }
             catch (Exception ex)
             {
-                loggingClass.logEntryWriter(ex.ToString(), "error");
+                try
+                {
+                    dynamic jsonObj = JsonConvert.DeserializeObject(body);
 
-                foundItem = null;
+                    return jsonObj["FileName"];
+                }
+                catch (Exception ex1)
+                {
+                    loggingClass.logEntryWriter(ex1.ToString(), "error");
+
+                    foundItem = null;
+                }
             }
 
             return foundItem;

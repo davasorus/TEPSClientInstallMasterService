@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace TEPSClientInstallService_Master.Classes
 {
@@ -141,10 +142,84 @@ namespace TEPSClientInstallService_Master.Classes
                 executeNonReturningStoredProcedure("UpdateSettingGISServerName", executionText);
                 executeNonReturningStoredProcedure("UpdateSettingRecordsServerName", executionText);
                 executeNonReturningStoredProcedure("UpdateSettingMobileServerName", executionText);
+                executeNonReturningStoredProcedure("UpdateSettingClientInstallPath", executionText);
             }
             else
             {
                 loggingClass.logEntryWriter("this should not have happened", "error");
+            }
+        }
+
+        public DataTable returnSettingsDBValue(string[] exec)
+        {
+            try
+            {
+                DataTable settingDBValues = new DataTable();
+
+                settingDBValues = executeReturningStoredProcedure("GetSettingByInstance", exec);
+
+                if (settingDBValues.Rows.Count > 0)
+                {
+                    return settingDBValues;
+                }
+
+                return settingDBValues;
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+                return null;
+            }
+        }
+
+        public async Task checkForPreReq(string storedProcedureName, string[] executionText)
+        {
+            try
+            {
+                string[] exec = { executionText[0], executionText[1] };
+
+                DataTable preReqByNameTable = new DataTable();
+
+                preReqByNameTable = executeReturningStoredProcedure(storedProcedureName, exec);
+
+                if (preReqByNameTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in preReqByNameTable.Rows)
+                    {
+                    }
+                }
+                else
+                {
+                    executeNonReturningStoredProcedure("InsertPreReq", executionText);
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+            }
+        }
+
+        public DataTable returnPreReqTable(string[] exec)
+        {
+            try
+            {
+                DataTable returnPreReqTable = new DataTable();
+
+                returnPreReqTable = executeReturningStoredProcedure("GetPreReqByName", exec);
+
+                if (returnPreReqTable.Rows.Count > 0)
+                {
+                    return returnPreReqTable;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+                return null;
             }
         }
 
@@ -190,8 +265,9 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "InsertPreReq":
-                        prm.Add(new SqlParameter("@PreReq_Name", SqlDbType.NVarChar) { Value = executionText[0] });
-                        prm.Add(new SqlParameter("@PreReq_Path", SqlDbType.NVarChar) { Value = executionText[1] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+                        prm.Add(new SqlParameter("@PreReq_Name", SqlDbType.NVarChar) { Value = executionText[1] });
+                        prm.Add(new SqlParameter("@PreReq_Path", SqlDbType.NVarChar) { Value = executionText[2] });
                         break;
 
                     case "InsertNewCatalog":
@@ -337,6 +413,11 @@ namespace TEPSClientInstallService_Master.Classes
                         prm.Add(new SqlParameter("@client_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
                         break;
 
+                    case "UpdateSettingClientInstallPath":
+                        prm.Add(new SqlParameter("@ClientInstallPath", SqlDbType.NVarChar) { Value = executionText[7] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[6]) });
+                        break;
+
                     default:
                         break;
                 }
@@ -431,6 +512,16 @@ namespace TEPSClientInstallService_Master.Classes
 
                     case "GetSettingByInstance":
                         prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = executionText[0] });
+                        cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+                        break;
+
+                    case "GetPreReqByName":
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@PreReqName", SqlDbType.NVarChar) { Value = executionText[1] });
                         cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
                         {

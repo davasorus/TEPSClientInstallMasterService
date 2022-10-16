@@ -2,7 +2,6 @@
 using NLog.Config;
 using NLog.Targets;
 using System;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace TEPSClientInstallService_Master.Classes
@@ -12,9 +11,6 @@ namespace TEPSClientInstallService_Master.Classes
         private static Logger _logger;
 
         private static sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
-
-        private static string applicationName = "TEPS Automated Client Install Master Service " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        private readonly string logFileName = $@"C:\ProgramData\Tyler Technologies\Public Safety\Tyler-Client-Install-Master-Service\Logging\{applicationName}.json";
 
         //adds log messages to log collection (which is then seen via the internal log viewer view)
         public async void logEntryWriter(string logMessage, string level)
@@ -78,7 +74,7 @@ namespace TEPSClientInstallService_Master.Classes
             var target =
                 new FileTarget
                 {
-                    FileName = logFileName,
+                    FileName = configValues.logFileName,
                     ArchiveAboveSize = 5000000,
                     ArchiveNumbering = ArchiveNumberingMode.Sequence
                 };

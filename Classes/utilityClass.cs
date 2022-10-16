@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace TEPSClientInstallService_Master.Classes
@@ -54,9 +55,75 @@ namespace TEPSClientInstallService_Master.Classes
 
         public int parseRequestBodyEnrolledInstanceType(string body)
         {
-            dynamic jsonObj = JsonConvert.DeserializeObject(body);
+            int foundItem = 0;
 
-            return jsonObj["Instance"];
+            var grabbedItem = "";
+            try
+            {
+                JArray jArray = JArray.Parse(body);
+
+                var jsonObjects = jArray.OfType<JObject>().ToList();
+
+                foreach (JObject jObject in jsonObjects)
+                {
+                    grabbedItem = jObject.GetValue("Instance").ToString();
+                }
+
+                int y = int.Parse(grabbedItem.ToString());
+
+                foundItem = y;
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    dynamic jsonObj = JsonConvert.DeserializeObject(body);
+
+                    return jsonObj["Instance"];
+                }
+                catch (Exception ex1)
+                {
+                    loggingClass.logEntryWriter(ex1.ToString(), "error");
+                }
+            }
+
+            return foundItem;
+        }
+
+        public string parseRequestBodyFileName(string body)
+        {
+            string foundItem = "";
+            var grabbedItem = "";
+            try
+            {
+                JArray jArray = JArray.Parse(body);
+
+                var jsonObjects = jArray.OfType<JObject>().ToList();
+
+                foreach (JObject jObject in jsonObjects)
+                {
+                    grabbedItem = jObject.GetValue("FileName").ToString();
+                }
+
+                foundItem = grabbedItem;
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    dynamic jsonObj = JsonConvert.DeserializeObject(body);
+
+                    return jsonObj["FileName"];
+                }
+                catch (Exception ex1)
+                {
+                    loggingClass.logEntryWriter(ex1.ToString(), "error");
+
+                    foundItem = null;
+                }
+            }
+
+            return foundItem;
         }
 
         public async Task updateInstalledCatalog(string message, string clientName)
@@ -327,8 +394,9 @@ namespace TEPSClientInstallService_Master.Classes
                 var GISServer = jsonObj["GISServer"];
                 var GISInstance = jsonObj["GISInstance"];
                 var Instance = jsonObj["Instance"];
+                var ClientPath = jsonObj["Client-Installation-Path"];
 
-                string[] execcutionText = { MobileServer, ESSServer, MSPServer, CADServer, GISServer, GISInstance, Instance };
+                string[] execcutionText = { MobileServer, ESSServer, MSPServer, CADServer, GISServer, GISInstance, Instance, ClientPath };
 
                 sqlServerInteractionClass.checkForSettings("", execcutionText);
 

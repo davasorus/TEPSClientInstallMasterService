@@ -83,7 +83,6 @@ namespace TEPSClientInstallService_Master.Controllers
 
         public async Task<IHttpActionResult> GETAllClients()
         {
-            var json = "";
             string[] executionText = { };
 
             var response = sqlServerInteraction.returnClientTable(executionText);
@@ -93,15 +92,11 @@ namespace TEPSClientInstallService_Master.Controllers
 
         public async Task<IHttpActionResult> GETAllClientsByID(int ID)
         {
-            var json = "";
-
             string[] executionText = { ID.ToString() };
 
             var response = sqlServerInteraction.returnClientTable(executionText);
 
             return Json(response);
-
-            //return Json(json);
         }
     }
 }

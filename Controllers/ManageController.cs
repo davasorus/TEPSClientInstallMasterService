@@ -61,6 +61,8 @@ namespace TEPSClientInstallService_Master.Controllers
             return Json(json);
         }
 
+        #region updating meta values in db
+
         public async Task<IHttpActionResult> PostUpdateSettingsDB(int id)
         {
             string json = "";
@@ -80,6 +82,10 @@ namespace TEPSClientInstallService_Master.Controllers
 
             return Ok("DataBase Updated");
         }
+
+        #endregion
+
+        #region pulling data out of DB
 
         public async Task<IHttpActionResult> GetAllClients()
         {
@@ -166,5 +172,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
             return Json(response);
         }
+
+        #endregion
     }
 }

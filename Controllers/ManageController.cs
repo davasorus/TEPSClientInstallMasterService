@@ -80,5 +80,28 @@ namespace TEPSClientInstallService_Master.Controllers
 
             return Ok("DataBase Updated");
         }
+
+        public async Task<IHttpActionResult> GETAllClients()
+        {
+            var json = "";
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnClientTable(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GETAllClientsByID(int ID)
+        {
+            var json = "";
+
+            string[] executionText = { ID.ToString() };
+
+            var response = sqlServerInteraction.returnClientTable(executionText);
+
+            return Json(response);
+
+            //return Json(json);
+        }
     }
 }

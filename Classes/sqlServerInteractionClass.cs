@@ -223,6 +223,58 @@ namespace TEPSClientInstallService_Master.Classes
             }
         }
 
+        public DataTable returnClientTable(string[] exec)
+        {
+            DataTable returnClientTable = new DataTable();
+
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    returnClientTable = executeReturningStoredProcedure("GetClientsByEnrolledTypeID", exec);
+
+                    if (returnClientTable.Rows.Count > 0)
+                    {
+                        returnTable = returnClientTable;
+
+                        return returnTable;
+                    }
+                    else
+                    {
+                        returnTable = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                returnClientTable = executeReturningStoredProcedure("GetClients", exec);
+
+                if (returnClientTable.Rows.Count > 0)
+                {
+                    returnTable = returnClientTable;
+
+                    return returnTable;
+                }
+                else
+                {
+                    returnTable = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
         #endregion returning sql data
 
         #region retrieving SQL Data
@@ -527,6 +579,24 @@ namespace TEPSClientInstallService_Master.Classes
                         {
                             da.Fill(result);
                         }
+                        break;
+
+                    case "GetClients":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetClientsByEnrolledTypeID":
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = executionText[0] });
+                        cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
                         break;
 
                     default:

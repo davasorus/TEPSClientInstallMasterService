@@ -223,6 +223,257 @@ namespace TEPSClientInstallService_Master.Classes
             }
         }
 
+        public DataTable returnClientTable(string[] exec)
+        {
+            DataTable returnClientTable = new DataTable();
+
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    returnClientTable = executeReturningStoredProcedure("GetClientsByEnrolledTypeID", exec);
+
+                    if (returnClientTable.Rows.Count > 0)
+                    {
+                        returnTable = returnClientTable;
+
+                        return returnTable;
+                    }
+                    else
+                    {
+                        returnTable = null;
+                        return returnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                returnClientTable = executeReturningStoredProcedure("GetClients", exec);
+
+                if (returnClientTable.Rows.Count > 0)
+                {
+                    returnTable = returnClientTable;
+
+                    return returnTable;
+                }
+                else
+                {
+                    returnTable = null;
+                    return returnTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
+        public DataTable returnCatalogTable(string[] exec)
+        {
+            DataTable catalogTable = new DataTable();
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    catalogTable = executeReturningStoredProcedure("GetInstalledCatalogByID", exec);
+                    if (catalogTable.Rows.Count > 0)
+                    {
+                        returnTable = catalogTable;
+                        return returnTable;
+                    }
+                    else
+                    {
+                        returnTable = null;
+                        return returnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                catalogTable = executeReturningStoredProcedure("GetInstalledCatalogs", exec);
+
+                if (catalogTable.Rows.Count > 0)
+                {
+                    returnTable = catalogTable;
+                    return returnTable;
+                }
+                else
+                {
+                    returnTable = null;
+                    return returnTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
+        public DataTable returnErrorTable(string storedProcedureName)
+        {
+            DataTable errorTable = new DataTable();
+            DataTable returnTable = new DataTable();
+            string[] exec = { };
+
+            try
+            {
+                if (storedProcedureName.Equals("GetTop50Errors"))
+                {
+                    errorTable = executeReturningStoredProcedure("GetTop50Errors", exec);
+                    if (errorTable.Rows.Count > 0)
+                    {
+                        returnTable = errorTable;
+                    }
+                    else
+                    {
+                        errorTable = null;
+                    }
+                }
+                else if (storedProcedureName.Equals("GetTop1000Errors"))
+                {
+                    errorTable = executeReturningStoredProcedure("GetTop1000Errors", exec);
+                    if (errorTable.Rows.Count > 0)
+                    {
+                        returnTable = errorTable;
+                    }
+                    else
+                    {
+                        errorTable = null;
+                    }
+                }
+                else
+                {
+                    returnTable = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
+        public DataTable returnInstallHistory(string[] exec)
+        {
+            DataTable historyTable = new DataTable();
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    historyTable = executeReturningStoredProcedure("GetInstallHistoryByEnrolledType", exec);
+
+                    if (historyTable.Rows.Count > 0)
+                    {
+                        returnTable = historyTable;
+                        return returnTable;
+                    }
+                    else
+                    {
+                        historyTable = null;
+                        return returnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                historyTable = executeReturningStoredProcedure("GetInstallHistory", exec);
+
+                if (historyTable.Rows.Count > 0)
+                {
+                    returnTable = historyTable;
+                    return returnTable;
+                }
+                else
+                {
+                    historyTable = null;
+                    return returnTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
+        public DataTable returnUnInstallHistory(string[] exec)
+        {
+            DataTable historyTable = new DataTable();
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    historyTable = executeReturningStoredProcedure("GetUnInstallHistoryByEnrolledType", exec);
+
+                    if (historyTable.Rows.Count > 0)
+                    {
+                        returnTable = historyTable;
+                        return returnTable;
+                    }
+                    else
+                    {
+                        historyTable = null;
+                        return returnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                historyTable = executeReturningStoredProcedure("GetUnInstallHistory", exec);
+
+                if (historyTable.Rows.Count > 0)
+                {
+                    returnTable = historyTable;
+                    return returnTable;
+                }
+                else
+                {
+                    historyTable = null;
+                    return returnTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
         #endregion returning sql data
 
         #region retrieving SQL Data
@@ -479,8 +730,16 @@ namespace TEPSClientInstallService_Master.Classes
 
                         break;
 
+                    case "GetTop1000Errors":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
                     case "GetClientByID":
-                        prm.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         cmd.Parameters.AddRange(prm.ToArray());
 
                         using (da = new SqlDataAdapter(cmd))
@@ -491,7 +750,7 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetInstalledCatalogByID":
-                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
                         {
@@ -511,7 +770,7 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetSettingByInstance":
-                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
                         {
@@ -520,13 +779,67 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetPreReqByName":
-                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@PreReqName", SqlDbType.NVarChar) { Value = executionText[1] });
                         cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(result);
                         }
+                        break;
+
+                    case "GetClients":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetClientsByEnrolledTypeID":
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+                        cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetInstallHistoryByEnrolledType":
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+                        cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetInstallHistory":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetUnInstallHistoryByEnrolledType":
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+                        cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetUnInstallHistory":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
                         break;
 
                     default:

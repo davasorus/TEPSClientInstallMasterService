@@ -142,7 +142,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
         public async Task<IHttpActionResult> GetInstallLogsByEnrolledType(int ID)
         {
-            string[] executionText = { ID.ToString()};
+            string[] executionText = { ID.ToString() };
 
             var response = sqlServerInteraction.returnInstallHistory(executionText);
 

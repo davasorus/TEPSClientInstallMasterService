@@ -329,7 +329,7 @@ namespace TEPSClientInstallService_Master.Classes
 
         public DataTable returnErrorTable(string storedProcedureName)
         {
-            DataTable catalogTable = new DataTable();
+            DataTable errorTable = new DataTable();
             DataTable returnTable = new DataTable();
             string[] exec = { };
 
@@ -337,31 +337,82 @@ namespace TEPSClientInstallService_Master.Classes
             {
                 if (storedProcedureName.Equals("GetTop50Errors"))
                 {
-                    catalogTable = executeReturningStoredProcedure("GetTop50Errors", exec);
-                    if (catalogTable.Rows.Count > 0)
+                    errorTable = executeReturningStoredProcedure("GetTop50Errors", exec);
+                    if (errorTable.Rows.Count > 0)
                     {
-                        returnTable = catalogTable;
+                        returnTable = errorTable;
                     }
                     else
                     {
-                        catalogTable = null;
+                        errorTable = null;
                     }
                 }
                 else if (storedProcedureName.Equals("GetTop1000Errors"))
                 {
-                    catalogTable = executeReturningStoredProcedure("GetTop1000Errors", exec);
-                    if (catalogTable.Rows.Count > 0)
+                    errorTable = executeReturningStoredProcedure("GetTop1000Errors", exec);
+                    if (errorTable.Rows.Count > 0)
                     {
-                        returnTable = catalogTable;
+                        returnTable = errorTable;
                     }
                     else
                     {
-                        catalogTable = null;
+                        errorTable = null;
                     }
                 }
                 else
                 {
                     returnTable = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
+        public DataTable returnInstallHistory(string[] exec)
+        {
+            DataTable historyTable = new DataTable();
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    historyTable = executeReturningStoredProcedure("GetInstallHistoryByEnrolledType", exec);
+
+                    if (historyTable.Rows.Count > 0)
+                    {
+                        returnTable = historyTable;
+                        return returnTable;
+                    }
+                    else
+                    {
+                        historyTable = null;
+                        return returnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                historyTable = executeReturningStoredProcedure("GetInstallHistory", exec);
+
+                if (historyTable.Rows.Count > 0)
+                {
+                    returnTable = historyTable;
+                    return returnTable;
+                }
+                else
+                {
+                    historyTable = null;
+                    return returnTable;
                 }
             }
             catch (Exception ex)
@@ -697,6 +748,24 @@ namespace TEPSClientInstallService_Master.Classes
                     case "GetClientsByEnrolledTypeID":
                         prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetInstallHistoryByEnrolledType":
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+                        cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetInstallHistory":
                         using (da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(result);

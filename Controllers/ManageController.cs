@@ -130,5 +130,23 @@ namespace TEPSClientInstallService_Master.Controllers
 
             return Json(response);
         }
+
+        public async Task<IHttpActionResult> GetAllInstallLogs()
+        {
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnInstallHistory(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetInstallLogsByEnrolledType(int ID)
+        {
+            string[] executionText = { ID.ToString()};
+
+            var response = sqlServerInteraction.returnInstallHistory(executionText);
+
+            return Json(response);
+        }
     }
 }

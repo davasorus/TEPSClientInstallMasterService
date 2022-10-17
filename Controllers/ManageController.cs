@@ -83,7 +83,7 @@ namespace TEPSClientInstallService_Master.Controllers
             return Ok("DataBase Updated");
         }
 
-        #endregion
+        #endregion updating meta values in db
 
         #region pulling data out of DB
 
@@ -173,6 +173,6 @@ namespace TEPSClientInstallService_Master.Controllers
             return Json(response);
         }
 
-        #endregion
+        #endregion pulling data out of DB
     }
 }

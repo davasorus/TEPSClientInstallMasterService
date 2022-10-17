@@ -2,7 +2,7 @@ name: DotNet 6.0 Build Status
 
 on:
   push:
-    branches: [ dev-branch ]
+    branches: [ dev-branch, josh-branch, jacob-branch ]
   pull_request:
     branches: [ live ]
 

@@ -148,5 +148,23 @@ namespace TEPSClientInstallService_Master.Controllers
 
             return Json(response);
         }
+
+        public async Task<IHttpActionResult> GetAllUnInstallLogs()
+        {
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnUnInstallHistory(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetUnInstallLogsByEnrolledType(int ID)
+        {
+            string[] executionText = { ID.ToString() };
+
+            var response = sqlServerInteraction.returnUnInstallHistory(executionText);
+
+            return Json(response);
+        }
     }
 }

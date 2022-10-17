@@ -423,6 +423,57 @@ namespace TEPSClientInstallService_Master.Classes
             return returnTable;
         }
 
+        public DataTable returnUnInstallHistory(string[] exec)
+        {
+            DataTable historyTable = new DataTable();
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    historyTable = executeReturningStoredProcedure("GetUnInstallHistoryByEnrolledType", exec);
+
+                    if (historyTable.Rows.Count > 0)
+                    {
+                        returnTable = historyTable;
+                        return returnTable;
+                    }
+                    else
+                    {
+                        historyTable = null;
+                        return returnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                historyTable = executeReturningStoredProcedure("GetUnInstallHistory", exec);
+
+                if (historyTable.Rows.Count > 0)
+                {
+                    returnTable = historyTable;
+                    return returnTable;
+                }
+                else
+                {
+                    historyTable = null;
+                    return returnTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
         #endregion returning sql data
 
         #region retrieving SQL Data
@@ -766,6 +817,24 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetInstallHistory":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetUnInstallHistoryByEnrolledType":
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+                        cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetUnInstallHistory":
                         using (da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(result);

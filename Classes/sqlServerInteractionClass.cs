@@ -327,6 +327,51 @@ namespace TEPSClientInstallService_Master.Classes
             return returnTable;
         }
 
+        public DataTable returnErrorTable(string storedProcedureName)
+        {
+            DataTable catalogTable = new DataTable();
+            DataTable returnTable = new DataTable();
+            string[] exec = { };
+
+            try
+            {
+                if (storedProcedureName.Equals("GetTop50Errors"))
+                {
+                    catalogTable = executeReturningStoredProcedure("GetTop50Errors", exec);
+                    if (catalogTable.Rows.Count > 0)
+                    {
+                        returnTable = catalogTable;
+                    }
+                    else
+                    {
+                        catalogTable = null;
+                    }
+                }
+                else if (storedProcedureName.Equals("GetTop1000Errors"))
+                {
+                    catalogTable = executeReturningStoredProcedure("GetTop1000Errors", exec);
+                    if (catalogTable.Rows.Count > 0)
+                    {
+                        returnTable = catalogTable;
+                    }
+                    else
+                    {
+                        catalogTable = null;
+                    }
+                }
+                else
+                {
+                    returnTable = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
         #endregion returning sql data
 
         #region retrieving SQL Data
@@ -576,6 +621,14 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetTop50Errors":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetTop1000Errors":
                         using (da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(result);

@@ -116,5 +116,19 @@ namespace TEPSClientInstallService_Master.Controllers
 
             return Json(response);
         }
+
+        public async Task<IHttpActionResult> GetTop50Errors()
+        {
+            var response = sqlServerInteraction.returnErrorTable("GetTop50Errors");
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> Get1000Errors()
+        {
+            var response = sqlServerInteraction.returnErrorTable("GetTop1000Errors");
+
+            return Json(response);
+        }
     }
 }

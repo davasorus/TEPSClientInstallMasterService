@@ -1,8 +1,8 @@
-CREATE PROCEDURE [dbo].[GetTop50Errors]
+﻿CREATE PROCEDURE [dbo].[GetTop1000Errors]
 	
 AS
 	begin
-	SELECT TOP (50) [Id]
+	SELECT TOP (1000) [Id]
       ,[ClientName]
       ,[ErrorMessage]
       ,[ErrorDate_Time]

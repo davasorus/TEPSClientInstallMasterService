@@ -61,6 +61,8 @@ namespace TEPSClientInstallService_Master.Controllers
             return Json(json);
         }
 
+        #region updating meta values in db
+
         public async Task<IHttpActionResult> PostUpdateSettingsDB(int id)
         {
             string json = "";
@@ -80,5 +82,97 @@ namespace TEPSClientInstallService_Master.Controllers
 
             return Ok("DataBase Updated");
         }
+
+        #endregion updating meta values in db
+
+        #region pulling data out of DB
+
+        public async Task<IHttpActionResult> GetAllClients()
+        {
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnClientTable(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetAllClientsByID(int ID)
+        {
+            string[] executionText = { ID.ToString() };
+
+            var response = sqlServerInteraction.returnClientTable(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetAllInstalledCatalogs()
+        {
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnCatalogTable(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetInstalledCatalogsByID(int ID)
+        {
+            string[] executionText = { ID.ToString() };
+
+            var response = sqlServerInteraction.returnCatalogTable(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetTop50Errors()
+        {
+            var response = sqlServerInteraction.returnErrorTable("GetTop50Errors");
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> Get1000Errors()
+        {
+            var response = sqlServerInteraction.returnErrorTable("GetTop1000Errors");
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetAllInstallLogs()
+        {
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnInstallHistory(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetInstallLogsByEnrolledType(int ID)
+        {
+            string[] executionText = { ID.ToString() };
+
+            var response = sqlServerInteraction.returnInstallHistory(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetAllUnInstallLogs()
+        {
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnUnInstallHistory(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetUnInstallLogsByEnrolledType(int ID)
+        {
+            string[] executionText = { ID.ToString() };
+
+            var response = sqlServerInteraction.returnUnInstallHistory(executionText);
+
+            return Json(response);
+        }
+
+        #endregion pulling data out of DB
     }
 }

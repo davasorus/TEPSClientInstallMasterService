@@ -244,6 +244,7 @@ namespace TEPSClientInstallService_Master.Classes
                     else
                     {
                         returnTable = null;
+                        return returnTable;
                     }
                 }
             }
@@ -265,6 +266,57 @@ namespace TEPSClientInstallService_Master.Classes
                 else
                 {
                     returnTable = null;
+                    return returnTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
+        public DataTable returnCatalogTable(string[] exec)
+        {
+            DataTable catalogTable = new DataTable();
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    catalogTable = executeReturningStoredProcedure("GetInstalledCatalogByID", exec);
+                    if (catalogTable.Rows.Count > 0)
+                    {
+                        returnTable = catalogTable;
+                        return returnTable;
+                    }
+                    else
+                    {
+                        returnTable = null;
+                        return returnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                catalogTable = executeReturningStoredProcedure("GetInstalledCatalogs", exec);
+
+                if (catalogTable.Rows.Count > 0)
+                {
+                    returnTable = catalogTable;
+                    return returnTable;
+                }
+                else
+                {
+                    returnTable = null;
+                    return returnTable;
                 }
             }
             catch (Exception ex)
@@ -532,7 +584,7 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetClientByID":
-                        prm.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         cmd.Parameters.AddRange(prm.ToArray());
 
                         using (da = new SqlDataAdapter(cmd))
@@ -543,7 +595,7 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetInstalledCatalogByID":
-                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
                         {
@@ -563,7 +615,7 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetSettingByInstance":
-                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
                         {
@@ -572,7 +624,7 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetPreReqByName":
-                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@PreReqName", SqlDbType.NVarChar) { Value = executionText[1] });
                         cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
@@ -590,7 +642,7 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetClientsByEnrolledTypeID":
-                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
                         {

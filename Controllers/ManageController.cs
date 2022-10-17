@@ -81,7 +81,7 @@ namespace TEPSClientInstallService_Master.Controllers
             return Ok("DataBase Updated");
         }
 
-        public async Task<IHttpActionResult> GETAllClients()
+        public async Task<IHttpActionResult> GetAllClients()
         {
             string[] executionText = { };
 
@@ -90,11 +90,29 @@ namespace TEPSClientInstallService_Master.Controllers
             return Json(response);
         }
 
-        public async Task<IHttpActionResult> GETAllClientsByID(int ID)
+        public async Task<IHttpActionResult> GetAllClientsByID(int ID)
         {
             string[] executionText = { ID.ToString() };
 
             var response = sqlServerInteraction.returnClientTable(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetAllInstalledCatalogs()
+        {
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnCatalogTable(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetInstalledCatalogsByID(int ID)
+        {
+            string[] executionText = { ID.ToString() };
+
+            var response = sqlServerInteraction.returnCatalogTable(executionText);
 
             return Json(response);
         }

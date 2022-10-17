@@ -7,4 +7,5 @@ AS
       ,[ErrorMessage]
       ,[ErrorDate_Time]
   FROM [TylerClientIMS].[dbo].[errorLog]
+  order by ErrorDate_Time desc
 	end

@@ -4,9 +4,9 @@ name: DotNet Framework 4.8 Build Status
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ Live, dev-branch, josh-branch, jacob-branch ]  
+    branches: [ live, dev-branch, josh-branch, jacob-branch ]  
   pull_request:
-    branches: [ Live, dev-branch ]
+    branches: [ live, dev-branch ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

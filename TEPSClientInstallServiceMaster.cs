@@ -20,6 +20,7 @@ namespace TEPSClientInstallService_Master
         private sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
 
         private preReqClass preReqClass = new preReqClass();
+        private serverSearchingClass serverSearchingClass = new serverSearchingClass();
 
         public TEPSClientInstallServiceMaster()
         {
@@ -120,6 +121,8 @@ namespace TEPSClientInstallService_Master
         private async Task updatePreReqs()
         {
             await preReqClass.updatePreReqs();
+            await serverSearchingClass.searchForORI();
+            await serverSearchingClass.searchForFDID();
         }
     }
 }

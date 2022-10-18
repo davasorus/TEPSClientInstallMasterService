@@ -32,8 +32,6 @@ namespace TEPSClientInstallService_Master.Classes
                     {
                         if (!String.IsNullOrEmpty(dr[8].ToString()))
                         {
-                            loggingClass.logEntryWriter($"{dr[8]}", "debug");
-
                             path = Path.Combine(dr[8].ToString(), "_Client-Installation");
                         }
                     }

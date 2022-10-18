@@ -34,7 +34,7 @@ namespace TEPSClientInstallService_Master.Classes
                         if (!String.IsNullOrEmpty(dr[8].ToString()))
                         {
                             path = Path.Combine(dr[8].ToString(), "_Client-Installation");
-                            path1 = Path.Combine(@"\\" + dr[8].ToString(), "_Client-Installation")
+                            path1 = Path.Combine(@"\\" + dr[8].ToString(), "_Client-Installation");
                         }
                     }
 

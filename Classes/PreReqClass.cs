@@ -23,6 +23,7 @@ namespace TEPSClientInstallService_Master.Classes
                 foreach (var item in test)
                 {
                     string path = "";
+                    string path1 = "";
 
                     string[] exec = { item };
 
@@ -33,10 +34,18 @@ namespace TEPSClientInstallService_Master.Classes
                         if (!String.IsNullOrEmpty(dr[8].ToString()))
                         {
                             path = Path.Combine(dr[8].ToString(), "_Client-Installation");
+                            path1 = Path.Combine(@"\\" + dr[8].ToString(), "_Client-Installation")
                         }
                     }
 
                     if (Directory.Exists(path))
+                    {
+                        preReqRename("SSCERuntime_x64-ENU.exe", preReqFileName.sqlCE4064, "SQL Compact Edition 4.0", path);
+                        preReqRename("SSCERuntime_x86-ENU.exe", preReqFileName.sqlCE4032, "SQL Compact Edition 4.0", path);
+
+                        await preReqSearchCopy(path, exec[0]);
+                    }
+                    else if(Directory.Exists(path1))
                     {
                         preReqRename("SSCERuntime_x64-ENU.exe", preReqFileName.sqlCE4064, "SQL Compact Edition 4.0", path);
                         preReqRename("SSCERuntime_x86-ENU.exe", preReqFileName.sqlCE4032, "SQL Compact Edition 4.0", path);

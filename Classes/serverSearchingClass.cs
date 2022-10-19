@@ -41,7 +41,7 @@ namespace TEPSClientInstallService_Master.Classes
 
                         await oriFinderAsync(path, exec[0]);
                     }
-                    else if(Directory.Exists(path1))
+                    else if (Directory.Exists(path1))
                     {
                         await oriFinderAsync(path, exec[0]);
                     }
@@ -98,8 +98,6 @@ namespace TEPSClientInstallService_Master.Classes
         //searches through the aegis mobile folder to count all ORI folders
         public async Task oriFinderAsync(string location, string executionText)
         {
-           
-
             string[] states = {"AL","AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
         "LA","ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NB", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI",
         "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "TP", "NWS"};
@@ -144,7 +142,6 @@ namespace TEPSClientInstallService_Master.Classes
                 }
                 else
                 {
-                   
                 }
             }
             catch (Exception ex)
@@ -152,12 +149,10 @@ namespace TEPSClientInstallService_Master.Classes
                 string logEntry = ex.ToString();
 
                 loggingClass.logEntryWriter(logEntry, "error");
-                
             }
         }
 
-
-         //searches for ORIs on the remote server
+        //searches for ORIs on the remote server
         //copies them to the local server
         public async Task fdidSearchAsync(string server1, string executionText)
         {
@@ -189,8 +184,8 @@ namespace TEPSClientInstallService_Master.Classes
                         {
                             if (sub.StartsWith(name))
                             {
-                                 //some stored procedure that updates the FDID DB Table at the enrolled instance
-                                 loggingClass.logEntryWriter($"{sub} was found", "debug");
+                                //some stored procedure that updates the FDID DB Table at the enrolled instance
+                                loggingClass.logEntryWriter($"{sub} was found", "debug");
                             }
                         }
                     }
@@ -200,14 +195,10 @@ namespace TEPSClientInstallService_Master.Classes
             {
                 if (ex.Message.Contains("Could not find a part of the path"))
                 {
-                    
-
                     loggingClass.logEntryWriter(ex.ToString(), "error");
                 }
                 else if (ex.Message.Contains("The process cannot access the file"))
                 {
-                   
-
                     loggingClass.logEntryWriter(ex.ToString(), "error");
                 }
                 else if (ex.Message.Contains("Access to the path"))
@@ -215,32 +206,24 @@ namespace TEPSClientInstallService_Master.Classes
                     string logEntry = ex.ToString();
 
                     loggingClass.logEntryWriter(logEntry, "error");
-
-                   
                 }
                 else if (ex.Message.Contains("The network path was not found"))
                 {
                     string logEntry = ex.ToString();
 
                     loggingClass.logEntryWriter(logEntry, "error");
-
-                    
                 }
                 else if (ex.Message.Contains("The user name or password is incorrect."))
                 {
                     string logEntry = ex.ToString();
 
                     loggingClass.logEntryWriter(logEntry, "error");
-
-                    
                 }
                 else
                 {
                     string logEntry = ex.ToString();
 
                     loggingClass.logEntryWriter(logEntry, "error");
-
-                   
                 }
             }
         }

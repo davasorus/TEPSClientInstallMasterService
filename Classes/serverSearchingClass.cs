@@ -96,7 +96,7 @@ namespace TEPSClientInstallService_Master.Classes
         }
 
         //searches through the aegis mobile folder to count all ORI folders
-        public async Task oriFinderAsync(string location, string executionText)
+        public async Task oriFinderAsync(string location, string ID)
         {
             string[] states = {"AL","AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
         "LA","ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NB", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI",
@@ -126,7 +126,10 @@ namespace TEPSClientInstallService_Master.Classes
                                         string[] files = Directory.GetFiles(sDir2);
                                         if (files.Length > 0)
                                         {
-                                            //some stored procedure that updates the ORI DB Table at the enrolled instance
+                                            string[] executionText = { sub, ID };
+
+                                            await sqlServerInteractionClass.checkForAgency("GetORIByNameByEnrolledInstanceType", executionText);
+
                                             loggingClass.logEntryWriter($"{sub} was found", "debug");
                                         }
                                     }
@@ -152,7 +155,7 @@ namespace TEPSClientInstallService_Master.Classes
 
         //searches for ORIs on the remote server
         //copies them to the local server
-        public async Task fdidSearchAsync(string location, string executionText)
+        public async Task fdidSearchAsync(string location, string ID)
         {
             string NUM1 = "1";
             string NUM2 = "2";
@@ -182,7 +185,10 @@ namespace TEPSClientInstallService_Master.Classes
                         {
                             if (sub.StartsWith(name))
                             {
-                                //some stored procedure that updates the FDID DB Table at the enrolled instance
+                                string[] executionText = { sub, ID };
+
+                                await sqlServerInteractionClass.checkForAgency("GetFDIDByNameByEnrolledInstanceType", executionText);
+
                                 loggingClass.logEntryWriter($"{sub} was found", "debug");
                             }
                         }

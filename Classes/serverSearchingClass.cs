@@ -53,9 +53,49 @@ namespace TEPSClientInstallService_Master.Classes
             }
         }
 
-       
+        public async Task searchForFDID()
+        {
+            try
+            {
+                string[] test = { "2", "3", "4" };
 
-            //searches through the aegis mobile folder to count all ORI folders
+                foreach (var item in test)
+                {
+                    string path = "";
+                    string path1 = "";
+
+                    string[] exec = { item };
+
+                    var test1 = sqlServerInteractionClass.returnSettingsDBValue(exec);
+
+                    foreach (DataRow dr in test1.Rows)
+                    {
+                        if (!String.IsNullOrEmpty(dr[2].ToString()))
+                        {
+                            path = Path.Combine(dr[2].ToString(), @"New World Systems\Aegis Mobile");
+                            path1 = Path.Combine(@"\\" + dr[2].ToString(), @"C$\C$\Programdata\New World Systems\Aegis Mobile\Data");
+                        }
+                    }
+
+                    if (Directory.Exists(path))
+                    {
+                        //await preReqSearchCopy(path, exec[0]);
+
+                        await fdidSearchAsync(path, exec[0]);
+                    }
+                    else if (Directory.Exists(path1))
+                    {
+                        await fdidSearchAsync(path, exec[0]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+            }
+        }
+
+        //searches through the aegis mobile folder to count all ORI folders
         public async Task oriFinderAsync(string location, string executionText)
         {
            

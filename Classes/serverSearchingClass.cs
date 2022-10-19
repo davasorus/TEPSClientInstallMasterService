@@ -128,8 +128,6 @@ namespace TEPSClientInstallService_Master.Classes
                                         {
                                             //some stored procedure that updates the ORI DB Table at the enrolled instance
                                             loggingClass.logEntryWriter($"{sub} was found", "debug");
-
-                                            return;
                                         }
                                     }
                                     catch
@@ -154,7 +152,7 @@ namespace TEPSClientInstallService_Master.Classes
 
         //searches for ORIs on the remote server
         //copies them to the local server
-        public async Task fdidSearchAsync(string server1, string executionText)
+        public async Task fdidSearchAsync(string location, string executionText)
         {
             string NUM1 = "1";
             string NUM2 = "2";
@@ -169,11 +167,11 @@ namespace TEPSClientInstallService_Master.Classes
 
             char[] separators = new char[] { '\\' };
 
-            string sDir1 = @"\\" + server1 + @"\C$\ProgramData\New World Systems\Aegis Mobile\Data";
+            string sDir = location;
 
             try
             {
-                foreach (var directory in Directory.GetDirectories(sDir1))
+                foreach (var directory in Directory.GetDirectories(sDir))
                 {
                     string[] subs = directory.Split(separators, StringSplitOptions.RemoveEmptyEntries);
                     string[] fdidName = { NUM1, NUM2, NUM3, NUM4, NUM5, NUM6, NUM7, NUM8, NUM9, NUM10 };

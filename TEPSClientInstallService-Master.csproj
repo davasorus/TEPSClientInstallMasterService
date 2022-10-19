@@ -288,6 +288,24 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="G5L9qP30_400x400.ico" />
+    <EmbeddedResource Include="Resources\Scripts\4.52 CreateSPInsertNewFDID.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.51 CreateSPInsertNewORI.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.50 CreateSPGetAllFDIDs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.49 CreateSPGetAllORIs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\2.9 CreateORITable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\2.10 CreateFDIDTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Scripts\4.48 CreateSPGetUninstallHistory.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

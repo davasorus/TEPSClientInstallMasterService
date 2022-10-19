@@ -20,6 +20,7 @@ namespace TEPSClientInstallService_Master
         private sqlServerInteractionClass sqlServerInteraction = new sqlServerInteractionClass();
 
         private preReqClass preReqClass = new preReqClass();
+        private serverSearchingClass serverSearchingClass = new serverSearchingClass();
 
         public TEPSClientInstallServiceMaster()
         {
@@ -50,20 +51,13 @@ namespace TEPSClientInstallService_Master
             loggingClass.logEntryWriter("Service is started at " + DateTime.Now, "info");
             loggingClass.logEntryWriter($"API listening at {config.BaseAddress}", "info");
 
-            Timer timer = new Timer
+            Timer updateCheckTimer = new Timer
             {
                 Interval = 600000
             };
-            timer.Start();
+            updateCheckTimer.Start();
 
-            timer.Elapsed += Timer_Elapsed;
-
-            Timer timer1 = new Timer
-            {
-                Interval = 3600000
-            };
-
-            timer1.Elapsed += Timer1_Elapsed;
+            updateCheckTimer.Elapsed += updateCheckTimer_Elapsed;
 
             Directory.CreateDirectory(configValues.updaterStoragePath);
             Directory.CreateDirectory(configValues.addonStoragePath);
@@ -84,11 +78,7 @@ namespace TEPSClientInstallService_Master
             Task task1 = Task.Factory.StartNew(() => updatePreReqs());
         }
 
-        private void Timer1_Elapsed(object sender, ElapsedEventArgs e)
-        {
-        }
-
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void updateCheckTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (!File.Exists(Path.Combine(configValues.updaterStoragePath, "TEPS Automated Master Service Updater.exe")))
             {
@@ -131,6 +121,8 @@ namespace TEPSClientInstallService_Master
         private async Task updatePreReqs()
         {
             await preReqClass.updatePreReqs();
+            await serverSearchingClass.searchForORI();
+            await serverSearchingClass.searchForFDID();
         }
     }
 }

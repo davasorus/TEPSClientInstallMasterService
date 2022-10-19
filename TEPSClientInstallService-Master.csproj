@@ -235,6 +235,7 @@
     <Compile Include="Classes\loggingClass.cs" />
     <Compile Include="Classes\preReqClass.cs" />
     <Compile Include="Classes\remoteConnectionClass.cs" />
+    <Compile Include="Classes\serverSearchingClass.cs" />
     <Compile Include="Classes\sqlServerInteractionClass.cs" />
     <Compile Include="Classes\utilityClass.cs" />
     <Compile Include="Controllers\ManageController.cs" />

@@ -199,6 +199,40 @@ namespace TEPSClientInstallService_Master.Classes
             }
         }
 
+        public async Task checkForAgency(string storedProcedureName, string[] executionText)
+        {
+            try
+            {
+                string[] exec = { executionText[0], executionText[1] };
+
+                DataTable agencyByNameTable = new DataTable();
+
+                agencyByNameTable = executeReturningStoredProcedure(storedProcedureName, exec);
+
+                if (agencyByNameTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in agencyByNameTable.Rows)
+                    {
+                    }
+                }
+                else
+                {
+                    if (storedProcedureName.Contains("ORI"))
+                    {
+                        executeNonReturningStoredProcedure("InsertNewORI", executionText);
+                    }
+                    else
+                    {
+                        executeNonReturningStoredProcedure("InsertNewFDID", executionText);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+            }
+        }
+
         public DataTable returnPreReqTable(string[] exec)
         {
             try
@@ -529,6 +563,16 @@ namespace TEPSClientInstallService_Master.Classes
                         prm.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar) { Value = executionText[0] });
                         break;
 
+                    case "InsertNewORI":
+                        prm.Add(new SqlParameter("@ORI", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        break;
+
+                    case "InsertNewFDID":
+                        prm.Add(new SqlParameter("@FDID", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        break;
+
                     case "UpdateCatalogSQLComp3532":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@SQLCompact3532_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
@@ -835,6 +879,44 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "GetUnInstallHistory":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetAllORIs":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetAllFDIDs":
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetORIByNameByEnrolledInstanceType":
+                        prm.Add(new SqlParameter("@ORI", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        cmd.Parameters.AddRange(prm.ToArray());
+                        using (da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(result);
+                        }
+
+                        break;
+
+                    case "GetFDIDByNameByEnrolledInstanceType":
+                        prm.Add(new SqlParameter("@FDID", SqlDbType.NVarChar) { Value = executionText[0] });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        cmd.Parameters.AddRange(prm.ToArray());
                         using (da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(result);

@@ -63,7 +63,7 @@ namespace TEPSClientInstallService_Master.Controllers
 
         #region updating meta values in db
 
-        public async Task<IHttpActionResult> PostUpdateSettingsDB(int id)
+        public async Task<IHttpActionResult> PostUpdateSettingsDB()
         {
             string json = "";
 

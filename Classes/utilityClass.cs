@@ -381,28 +381,73 @@ namespace TEPSClientInstallService_Master.Classes
 
         public async Task configureSettingsTableAsync(string body)
         {
+            var MobileServer = "";
+            var ESSServer = "";
+            var RecordsServer = "";
+            var CADServer = "";
+            var GISServer = "";
+            var GISInstance = "";
+            var Instance = "";
+            var ClientPath = "";
+
             try
             {
                 //var jsonFilePackage = JsonConvert.DeserializeObject<serverConfigObj>(body);
 
                 dynamic jsonObj = JsonConvert.DeserializeObject(body);
 
-                var MobileServer = jsonObj["MobileServer"];
-                var ESSServer = jsonObj["ESSServer"];
-                var MSPServer = jsonObj["MSPServer"];
-                var CADServer = jsonObj["CADServer"];
-                var GISServer = jsonObj["GISServer"];
-                var GISInstance = jsonObj["GISInstance"];
-                var Instance = jsonObj["Instance"];
-                var ClientPath = jsonObj["Client-Installation-Path"];
+                MobileServer = jsonObj["MobileServer"];
+                ESSServer = jsonObj["ESSServer"];
+                RecordsServer = jsonObj["RecordsServer"];
+                CADServer = jsonObj["CADServer"];
+                GISServer = jsonObj["GISServer"];
+                GISInstance = jsonObj["GISInstance"];
+                Instance = jsonObj["Instance"];
+                ClientPath = jsonObj["ClientInstallationPath"];
 
-                string[] execcutionText = { MobileServer, ESSServer, MSPServer, CADServer, GISServer, GISInstance, Instance, ClientPath };
+                string[] execcutionText = { MobileServer, ESSServer, RecordsServer, CADServer, GISServer, GISInstance, Instance, ClientPath };
 
                 sqlServerInteractionClass.checkForSettings("", execcutionText);
 
                 parseORI(body);
 
                 parseFDID(body);
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
+            }
+
+            try
+            {
+                JArray jArray = JArray.Parse(body);
+
+                var jsonObjects = jArray.OfType<JObject>().ToList();
+
+                foreach (JObject jObject in jsonObjects)
+                {
+                    MobileServer = jObject.GetValue("MobileServer").ToString();
+
+                    ESSServer = jObject.GetValue("ESSServer").ToString();
+
+                    RecordsServer = jObject.GetValue("RecordsServer").ToString();
+
+                    CADServer = jObject.GetValue("CADServer").ToString();
+
+                    GISServer = jObject.GetValue("GISServer").ToString();
+
+                    GISInstance = jObject.GetValue("GISInstance").ToString();
+
+                    Instance = jObject.GetValue("Instance").ToString();
+
+                    ClientPath = jObject.GetValue("Client-Installation-Path").ToString();
+                }
+
+                string[] execcutionText = { MobileServer, ESSServer, RecordsServer, CADServer, GISServer, GISInstance, Instance, ClientPath };
+
+                sqlServerInteractionClass.checkForSettings("", execcutionText);
             }
             catch (Exception ex)
             {

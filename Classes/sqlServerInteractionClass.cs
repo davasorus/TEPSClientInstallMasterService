@@ -285,8 +285,6 @@ namespace TEPSClientInstallService_Master.Classes
             }
             catch (Exception ex)
             {
-                
-
                 returnTable = null;
             }
 
@@ -308,8 +306,6 @@ namespace TEPSClientInstallService_Master.Classes
             }
             catch (Exception ex)
             {
-               
-
                 returnTable = null;
             }
 
@@ -340,7 +336,6 @@ namespace TEPSClientInstallService_Master.Classes
             }
             catch (Exception ex)
             {
-                
                 returnTable = null;
             }
 
@@ -361,7 +356,6 @@ namespace TEPSClientInstallService_Master.Classes
             }
             catch (Exception ex)
             {
-                
                 returnTable = null;
             }
 
@@ -407,8 +401,6 @@ namespace TEPSClientInstallService_Master.Classes
             }
             catch (Exception ex)
             {
-                
-
                 returnTable = null;
                 return returnTable;
             }

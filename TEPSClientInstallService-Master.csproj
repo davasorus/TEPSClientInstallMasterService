@@ -477,9 +477,6 @@
     <EmbeddedResource Include="Resources\Scripts\4.1 CreateSPInsertPreReq.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Scripts\2.7 CreatePreReqUploadTable.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Scripts\2.6 CreateUnInstallHistoryTable.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

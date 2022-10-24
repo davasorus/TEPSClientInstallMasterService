@@ -35,13 +35,11 @@ namespace TEPSClientInstallService_Master.Classes
                         }
                     }
 
-                    if (Directory.Exists(path))
+                    if (Directory.Exists(path1))
                     {
-                        //await preReqSearchCopy(path, exec[0]);
-
-                        await oriFinderAsync(path, exec[0]);
+                        await oriFinderAsync(path1, exec[0]);
                     }
-                    else if (Directory.Exists(path1))
+                    else if (Directory.Exists(path))
                     {
                         await oriFinderAsync(path, exec[0]);
                     }
@@ -79,13 +77,11 @@ namespace TEPSClientInstallService_Master.Classes
 
                     if (Directory.Exists(path))
                     {
-                        //await preReqSearchCopy(path, exec[0]);
-
                         await fdidSearchAsync(path, exec[0]);
                     }
                     else if (Directory.Exists(path1))
                     {
-                        await fdidSearchAsync(path, exec[0]);
+                        await fdidSearchAsync(path1, exec[0]);
                     }
                 }
             }

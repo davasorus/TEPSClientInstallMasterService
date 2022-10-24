@@ -288,6 +288,12 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="G5L9qP30_400x400.ico" />
+    <EmbeddedResource Include="Resources\Scripts\4.56 CreateSPUpdateSettingCADServerName.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Scripts\4.55 CreateSPGetSettingByInstance.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Scripts\4.54 CreateSPGetFDIDByNameByEnrolledInstanceType.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -475,9 +481,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Scripts\4.1 CreateSPInsertPreReq.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Scripts\2.7 CreatePreReqUploadTable.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Scripts\2.6 CreateUnInstallHistoryTable.sql">

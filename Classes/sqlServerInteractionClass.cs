@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace TEPSClientInstallService_Master.Classes
@@ -265,7 +266,7 @@ namespace TEPSClientInstallService_Master.Classes
 
             try
             {
-                if (exec[0] != null)
+                if (exec.Count() > 0)
                 {
                     returnClientTable = executeReturningStoredProcedure("GetClientsByEnrolledTypeID", exec);
 
@@ -318,7 +319,7 @@ namespace TEPSClientInstallService_Master.Classes
 
             try
             {
-                if (exec[0] != null)
+                if (exec.Count() > 0)
                 {
                     catalogTable = executeReturningStoredProcedure("GetInstalledCatalogByID", exec);
                     if (catalogTable.Rows.Count > 0)
@@ -375,10 +376,12 @@ namespace TEPSClientInstallService_Master.Classes
                     if (errorTable.Rows.Count > 0)
                     {
                         returnTable = errorTable;
+                        return returnTable;
                     }
                     else
                     {
                         errorTable = null;
+                        return returnTable;
                     }
                 }
                 else if (storedProcedureName.Equals("GetTop1000Errors"))
@@ -387,20 +390,19 @@ namespace TEPSClientInstallService_Master.Classes
                     if (errorTable.Rows.Count > 0)
                     {
                         returnTable = errorTable;
+                        return returnTable;
                     }
                     else
                     {
                         errorTable = null;
+                        return returnTable;
                     }
-                }
-                else
-                {
-                    returnTable = null;
                 }
             }
             catch (Exception ex)
             {
                 returnTable = null;
+                return returnTable;
             }
 
             return returnTable;

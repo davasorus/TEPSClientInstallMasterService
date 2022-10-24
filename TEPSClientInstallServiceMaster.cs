@@ -35,7 +35,7 @@ namespace TEPSClientInstallService_Master
 
             var config = new HttpSelfHostConfiguration($"http://{Environment.MachineName}:8081");
 
-            var cors = new EnableCorsAttribute($"http://{Environment.MachineName}", "*", "*");
+            var cors = new EnableCorsAttribute($"*", "*", "*");
 
             config.EnableCors();
 

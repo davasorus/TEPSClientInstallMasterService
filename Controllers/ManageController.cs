@@ -93,6 +93,8 @@ namespace TEPSClientInstallService_Master.Controllers
 
             var response = sqlServerInteraction.returnClientTable(executionText);
 
+           
+
             return Json(response);
         }
 
@@ -110,6 +112,8 @@ namespace TEPSClientInstallService_Master.Controllers
             string[] executionText = { };
 
             var response = sqlServerInteraction.returnCatalogTable(executionText);
+
+           
 
             return Json(response);
         }
@@ -133,6 +137,7 @@ namespace TEPSClientInstallService_Master.Controllers
         public async Task<IHttpActionResult> Get1000Errors()
         {
             var response = sqlServerInteraction.returnErrorTable("GetTop1000Errors");
+            
 
             return Json(response);
         }
@@ -142,6 +147,7 @@ namespace TEPSClientInstallService_Master.Controllers
             string[] executionText = { };
 
             var response = sqlServerInteraction.returnInstallHistory(executionText);
+           
 
             return Json(response);
         }
@@ -160,6 +166,7 @@ namespace TEPSClientInstallService_Master.Controllers
             string[] executionText = { };
 
             var response = sqlServerInteraction.returnUnInstallHistory(executionText);
+            
 
             return Json(response);
         }

@@ -31,16 +31,12 @@ namespace TEPSClientInstallService_Master.Classes
                     {
                         value = row[1].ToString();
 
-                        loggingClass.logEntryWriter(value, "debug");
-
                         checkForCatalog("GetInstalledCatalogByID", exec);
 
                         try
                         {
                             if (executionText[1].Length > 0)
                             {
-                                loggingClass.logEntryWriter(executionText[1], "debug");
-
                                 executeNonReturningStoredProcedure("UpdateClientInstance", executionText);
                             }
                         }
@@ -662,21 +658,25 @@ namespace TEPSClientInstallService_Master.Classes
                     case "UpdateCatalogFireMobile":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@FireMobile_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
+
                         break;
 
                     case "UpdateCatalogLEMobile":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@LEMobile_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
+
                         break;
 
                     case "UpdateCatalogMergeMobile":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@MobileMerge_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
+
                         break;
 
                     case "UpdateCatalogMobileConfig":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@MobileAgencyConfig", SqlDbType.NVarChar) { Value = executionText[1] });
+
                         break;
 
                     case "UpdateSettingESSServerName":

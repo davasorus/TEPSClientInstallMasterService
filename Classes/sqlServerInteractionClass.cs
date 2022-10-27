@@ -31,12 +31,16 @@ namespace TEPSClientInstallService_Master.Classes
                     {
                         value = row[1].ToString();
 
+                        loggingClass.logEntryWriter(value, "debug");
+
                         checkForCatalog("GetInstalledCatalogByID", exec);
 
                         try
                         {
                             if (executionText[1].Length > 0)
                             {
+                                loggingClass.logEntryWriter(executionText[1], "debug");
+
                                 executeNonReturningStoredProcedure("UpdateClientInstance", executionText);
                             }
                         }
@@ -706,8 +710,9 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "UpdateClientInstance":
-                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
-                        prm.Add(new SqlParameter("@client_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        prm.Add(new SqlParameter("@client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+
                         break;
 
                     case "UpdateSettingClientInstallPath":

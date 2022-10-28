@@ -145,7 +145,7 @@ namespace TEPSClientInstallService_Master.Controllers
             {
                 if (ex.CancellationToken.IsCancellationRequested)
                 {
-                    loggingClass.logEntryWriter($"cancellation was requested?", "debug");
+                    loggingClass.logEntryWriter($"timeout hit", "debug");
                     loggingClass.logEntryWriter(ex.ToString(), "debug");
 
                     json = ex.ToString();

@@ -658,21 +658,25 @@ namespace TEPSClientInstallService_Master.Classes
                     case "UpdateCatalogFireMobile":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@FireMobile_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
+
                         break;
 
                     case "UpdateCatalogLEMobile":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@LEMobile_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
+
                         break;
 
                     case "UpdateCatalogMergeMobile":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@MobileMerge_installed", SqlDbType.Bit) { Value = int.Parse(executionText[1]) });
+
                         break;
 
                     case "UpdateCatalogMobileConfig":
                         prm.Add(new SqlParameter("@Client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
                         prm.Add(new SqlParameter("@MobileAgencyConfig", SqlDbType.NVarChar) { Value = executionText[1] });
+
                         break;
 
                     case "UpdateSettingESSServerName":
@@ -706,8 +710,9 @@ namespace TEPSClientInstallService_Master.Classes
                         break;
 
                     case "UpdateClientInstance":
-                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
-                        prm.Add(new SqlParameter("@client_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        prm.Add(new SqlParameter("@EnrolledInstanceType_ID", SqlDbType.Int) { Value = int.Parse(executionText[1]) });
+                        prm.Add(new SqlParameter("@client_ID", SqlDbType.Int) { Value = int.Parse(executionText[0]) });
+
                         break;
 
                     case "UpdateSettingClientInstallPath":

@@ -314,7 +314,7 @@ namespace TEPSClientInstallService_Master.Classes
                         sqlServerInteractionClass.executeNonReturningStoredProcedure("UpdateCatalogSQLCLR201264", exec1.ToArray());
                         break;
 
-                    case string t when message.Contains("MSP"):
+                    case string t when message.Contains("LERMS"):
                         bit = 1;
 
                         exec1.Add(bit.ToString());

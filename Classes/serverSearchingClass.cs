@@ -31,7 +31,7 @@ namespace TEPSClientInstallService_Master.Classes
                         if (!String.IsNullOrEmpty(dr[2].ToString()))
                         {
                             path = dr[2].ToString();
-                            path1 = Path.Combine(@"\\" + dr[2].ToString(), @"C$\C$\Programdata\New World Systems\Aegis Mobile\Data");
+                            path1 = Path.Combine(@"\\" + dr[2].ToString(), @"C$\Programdata\New World Systems\Aegis Mobile\Data");
                         }
                     }
 
@@ -71,7 +71,7 @@ namespace TEPSClientInstallService_Master.Classes
                         if (!String.IsNullOrEmpty(dr[2].ToString()))
                         {
                             path = dr[2].ToString();
-                            path1 = Path.Combine(@"\\" + dr[2].ToString(), @"C$\C$\Programdata\New World Systems\Aegis Mobile\Data");
+                            path1 = Path.Combine(@"\\" + dr[2].ToString(), @"C$\Programdata\New World Systems\Aegis Mobile\Data");
                         }
                     }
 

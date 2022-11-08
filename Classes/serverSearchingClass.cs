@@ -30,8 +30,8 @@ namespace TEPSClientInstallService_Master.Classes
                     {
                         if (!String.IsNullOrEmpty(dr[2].ToString()))
                         {
-                            path = Path.Combine(dr[2].ToString(), @"New World Systems\Aegis Mobile");
-                            path1 = Path.Combine(@"\\" + dr[2].ToString(), @"C$\C$\Programdata\New World Systems\Aegis Mobile\Data");
+                            path = dr[2].ToString();
+                            path1 = Path.Combine(@"\\" + dr[2].ToString(), @"C$\Programdata\New World Systems\Aegis Mobile\Data");
                         }
                     }
 
@@ -70,8 +70,8 @@ namespace TEPSClientInstallService_Master.Classes
                     {
                         if (!String.IsNullOrEmpty(dr[2].ToString()))
                         {
-                            path = Path.Combine(dr[2].ToString(), @"New World Systems\Aegis Mobile");
-                            path1 = Path.Combine(@"\\" + dr[2].ToString(), @"C$\C$\Programdata\New World Systems\Aegis Mobile\Data");
+                            path = dr[2].ToString();
+                            path1 = Path.Combine(@"\\" + dr[2].ToString(), @"C$\Programdata\New World Systems\Aegis Mobile\Data");
                         }
                     }
 
@@ -139,6 +139,7 @@ namespace TEPSClientInstallService_Master.Classes
                 }
                 else
                 {
+                    throw new Exception();
                 }
             }
             catch (Exception ex)

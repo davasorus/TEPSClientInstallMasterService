@@ -173,6 +173,42 @@ namespace TEPSClientInstallService_Master.Controllers
             return Json(response);
         }
 
+        public async Task<IHttpActionResult> GetORIs()
+        {
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnORIs(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetORIsByEnrolledType(int ID)
+        {
+            string[] executionText = { ID.ToString() };
+
+            var response = sqlServerInteraction.returnORIs(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetFDIDs()
+        {
+            string[] executionText = { };
+
+            var response = sqlServerInteraction.returnFDIDs(executionText);
+
+            return Json(response);
+        }
+
+        public async Task<IHttpActionResult> GetFDIDsByEnrolledType(int ID)
+        {
+            string[] executionText = { ID.ToString() };
+
+            var response = sqlServerInteraction.returnFDIDs(executionText);
+
+            return Json(response);
+        }
+
         #endregion pulling data out of DB
     }
 }

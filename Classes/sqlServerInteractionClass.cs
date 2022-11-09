@@ -510,6 +510,108 @@ namespace TEPSClientInstallService_Master.Classes
             return returnTable;
         }
 
+        public DataTable returnORIs(string[] exec)
+        {
+            DataTable oriTable = new DataTable();
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    oriTable = executeReturningStoredProcedure("GetORIByNameByEnrolledInstanceType", exec);
+
+                    if (oriTable.Rows.Count > 0)
+                    {
+                        returnTable = oriTable;
+                        return returnTable;
+                    }
+                    else
+                    {
+                        oriTable = null;
+                        return returnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                oriTable = executeReturningStoredProcedure("GetAllORIs", exec);
+
+                if (oriTable.Rows.Count > 0)
+                {
+                    returnTable = oriTable;
+                    return returnTable;
+                }
+                else
+                {
+                    oriTable = null;
+                    return returnTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
+        public DataTable returnFDIDs(string[] exec)
+        {
+            DataTable fdidTable = new DataTable();
+            DataTable returnTable = new DataTable();
+
+            try
+            {
+                if (exec[0] != null)
+                {
+                    fdidTable = executeReturningStoredProcedure("GetFDIDByNameByEnrolledInstanceType", exec);
+
+                    if (fdidTable.Rows.Count > 0)
+                    {
+                        returnTable = fdidTable;
+                        return returnTable;
+                    }
+                    else
+                    {
+                        fdidTable = null;
+                        return returnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            try
+            {
+                fdidTable = executeReturningStoredProcedure("GetAllFDIDs", exec);
+
+                if (fdidTable.Rows.Count > 0)
+                {
+                    returnTable = fdidTable;
+                    return returnTable;
+                }
+                else
+                {
+                    fdidTable = null;
+                    return returnTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                returnTable = null;
+            }
+
+            return returnTable;
+        }
+
         #endregion returning sql data
 
         #region retrieving SQL Data
